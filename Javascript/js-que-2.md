@@ -1,36 +1,49 @@
- - How Javascript works and Execution Context ?
-Ans- Execution context is an 2 component - memory or variable envioronment - contains variable nd function as the key value pair.
-											code or thread of execution - it is an whole code is executed one line at a time
-					2 types of JS Context- Global and Function(Local).
-											
-	Javascript is a Synchronous single threaded language. 
-	
+ 
+
+1. How Javascript works and Execution Context ?
+
+ ```
+			- Execution context is an 2 component - memory or variable envioronment 
+			- contains variable and function as the key value pair. code or thread of execution - it is an whole code is executed one line at a time 2 types of JS Context
+			- Global and Function(Local).
+			- Javascript is a Synchronous single threaded language.
+ 
+ ```
+ 					
+---
+
+2. For Each, For in, For of		
+
+
+```
+			** For each() -> Simply calls a provided function on each elements in your array and here doesn't return anything.
+
+				Syntax- arr.forEach(callback (curent value[index[array]]){
+					//execution
+					}[thisArg]);
 					
-		
-- For Each, For in, For of											
-Ans-** For each() -> Simply calls a provided function on each elements in your array. and here doesn't return anything.
+				eg- const cities= ['pune', 'mumbai','nag'];
 
-		Syntax- arr.forEach(callback (curent value[index[array]]){
-			//execution
-			}[thisArg]);
-			
-		eg- const cities= ['pune', 'mumbai','nag'];
-			cities.forEach(function(city){
-			c.log (city + " => " + city.length);
-			})  // pune=>4  mumbai=>6  nag=>3
-			
-	** for in=> Iterate and return indexes for all elements of an array.
-				for(var city in cities){
-				  c.log(city + " => " + city.length);
-				  } // 0 => 1 1=>1 2=>1
-				  
-	** for of => return element of an array; 
-					for(var city of cities){
-				  c.log(city + " => " + city.length);
-				  } // pune=> 4 mumbai=>6 nag=>3
-				  
+					cities.forEach(function(city){
+						c.log (	city + " => " + city.length);
+					})  // pune=>4  mumbai=>6  nag=>3
+					
+			** for in=> Iterate and return indexes for all elements of an array.
 
-- Undefined vs not defined ?
+						for(var city in cities){
+							c.log(city + " => " + city.length);
+						} // 0 => 1 1=>1 2=>1
+						
+			** for of => return element of an array; 
+
+						for(var city of cities){
+							c.log(city + " => " + city.length);
+						} // pune=> 4 mumbai=>6 nag=>3
+```
+				  
+---
+
+3. Undefined vs not defined ?
 Ans-  
 		console.log(x); // hoisting - undefined
 		var x= 7 ; 
@@ -39,9 +52,10 @@ Ans-
 		
 		console.log(a); // a is not defined , we are not declared  a variable this is get not defined.
 
-				  
 
- - Synchronous and Asynchronous in js ?
+---				  
+
+ 4. Synchronous and Asynchronous in js ?
 Ans-  Js is a Synchronous and single threaded language.
 		Synchronous code is executed in sequence- each statement waits for the previous statement to finish before executing.
 		Synchronous operation block instructions until the task is completed.
@@ -51,9 +65,9 @@ Ans-  Js is a Synchronous and single threaded language.
 		  Asynchronous operation can execute without blocking other operations.
 		  
 
-
+---
 			
-***-  Function Statement vs Function expression?
+5. Function Statement vs Function expression?
 Ans- measure difference is hoisting .
 
 		ex- a(); //a called
@@ -78,11 +92,12 @@ Ans- measure difference is hoisting .
 				ex-  function(){//exexution}
 			what is use anonymous func- when the function are used as a value
 	
-	**First class function - the ability of a function to be used as values and can be passed as a argumrnt to the another
-					function nd can be returned from the function this ability is called first called function.
+	**First class function - the ability of a function to be used as values and can be passed as a argumrnt to the another function nd can be returned from the function this ability is called first called function.
 					
+---
 
-***- SetTimeOut with Closuers in js?
+
+6. SetTimeOut with Closuers in js?
 Ans- SetTimeOut is take a callback function nd stores into some place and attach to the timer do it.
 		Its run only once after the code execution . it is timer show in milisecond (1000).Its not wait for anythings.
 		

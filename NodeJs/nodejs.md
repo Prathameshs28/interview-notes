@@ -34,7 +34,7 @@ oops concepts
 - what is passport in Nodejs
 - explain auth implementation using JWT
 - explain file module in NodeJs
-
+how to debug your node.js code?
 
 HTML template rendering (EJS)
 cluster

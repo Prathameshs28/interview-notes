@@ -13,11 +13,14 @@ ng-container in angular
             {{post.id}} : {{post.name}}
          </div>
          </ng-container>
+
          2. used on inline content
          e.g
          <div>
          <ng-container *ngIf="error">Oops: </ng-container> {{message}}   // span
          </div>
+
+
          3. to Ensure Valid HTML Standards
          <ul>
          <ng-container *ngFor="let todo of todos">   // div
@@ -28,6 +31,34 @@ ng-container in angular
          </ul>
 
 ```
+
+
+
+ Dynamic Component
+Standalone Component
+Router protection
+Optimizing angular app
+Angular universal - SSR
+Angular animation
+Offline capabilities using service worker
+Angular Schematics
+ng Deploy
+Managing Multiple Projects in One Folder
+
+
+
+
+
+ActivatedRouteSnapshot
+RouterStateSnapshot
+ActivatedRoute
+NavigationEnd
+NavigationStart
+ActivatedRoute, Data, Event, NavigationEnd, Router
+resolver
+
+useFactory useEffect
+angular logging and monitoring
 
 # Angular interview questions:
 
@@ -862,6 +893,8 @@ ng-container in angular
 
 25. Which form you use template driven or reactive forms
 
+In case of multi-step forms, how will you use reactive form in it?
+
 26. How to use shareable component
 
 27. What is @INPUT & @OUTPUT decorators?
@@ -955,7 +988,7 @@ ng-container in angular
 
 63. Benefits of trackBy
 
-64. What is a Change Detection Strategy?
+64. What is a Change Detection Strategy? (https://www.xenonstack.com/blog/performance-optimization-in-angular)
 
 65. How to manage state in Angular => ngrx
 
@@ -977,7 +1010,7 @@ ng-container in angular
 
 73. what is http interceptor
 
-74. What is authguard
+74. What is authguard /routeGuard / guards
 
 75. callback promises observable
 
@@ -987,15 +1020,160 @@ ng-container in angular
 
 78. dependency and dev dependency - diff
 
-79. change detection strategy
 
 
 81. infinite scrolling npm pacakage
 
-82. What are HTTPIntercepters?
- interceptor why used?
+82. What are HTTPIntercepters & why used??
 
 
+
+-------------------------------
+
+new
+
+
+
+
+
+Explain angular deployment, how is it done?
+ngrx, flow: how state, actions, selectors, etc work
+What is responsive design? what is mobile-first approach?
+Multilanguage support?
+How to select multiple data from drop-down
+
+
+what are different ways to optimize a given project to minimize the rendering 
+load and package size?? anything related to ng build? 
+(Ans: ng build with aot option, instead of default JIT compilation)
+
+
+
+
+**********************
+
+
+**explain following code:
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+@NgModule({
+  imports:     [ BrowserModule ],
+  providers:   [ Logger ],
+  declarations: [ AppComponent ],
+  exports:     [ AppComponent ],
+  bootstrap:   [ AppComponent ]
+})
+export class AppModule { }
+
+
+how to show reverse order in js? like 12345 - 54321 & also can show in typescript ?
+
+
+*******************************************************
+
+
+Performance optimization?
+cross component communication
+Inter component communication?
+How to easily make all properties of an interface optional?
+
+is it possible to initialize variables in a constructor
+
+
+typescript vs javascript? advantages of typescript?
+
+app module - how to get other than app component as a home component
+
+dependency and dev dependency - diff
+
+
+Types of event handler
+
+How to handle error in angular? Syntax
+
+Explain different types of events in angular?
+
+
+How to manage/handle session in ng
+
+What is package.json & its need?
+
+what are html selectors
+what are css selectors
+what is singleton class
+
+explain two way binding
+
+what is providers in angular ?
+what is whitespaing ?
+
+
+Transpiling?
+web-socket?
+web accessibility
+Angular upgrade
+unit testing? describe different test cases for a 
+
+login component with 2 input fields, submit button & cancel button
+
+
+
+Coding & Scenario:
+
+Q. coding question using notepad, show result on a browser:- 
+create a button using html, change its style, show alert on click
+
+
+prime number program
+
+
+
+Scenario 1:- 
+
+You have a dropdown in that you have options of cities. 
+If you click on the city you would get the data as name and category. 
+So how would you display the data in of the categories and name in a card.
+
+
+Scenario 2:- 
+
+In a project, If you have three modules:- AppModule,ModuleA,ModuleB. 
+and If you run the application the AppModule would be loaded and if i go to Module A, 
+the module A would be loaded. After that i clear the cache memory and reload the application. 
+Then if go directly on ModuleB. It would load moduleA and ModuleB. So what would be the mistake 
+that had might done by the developer.
+
+* If API returns random string which contains "Click Here" .
+ Display that string and also display the "Click Here" in link format. 
+ (without using javascript functions, just logic)
+
+
+* CSS= If there are 4 Div's in a row eg:(Div 1, Div 2, Div 3, Div 4).... 
+Display Div 4 before Div 1, just using CSS.
+
+
+* css=>there is div inside there is two div's =>display:flex=> what is the output
+
+* justify-content-center=>what is the output
+
+const a=[1,2,3] a.map(x=>x*3) and a.filter(x=>x*3) output?ans=>for map=[3,6,9],filter=[1,2,3]
+
+const a={x:3,y:2,z:4}=>get z value by spread or destructure  methods=>ans=>const {z}=a
+
+there is a button and and a table with 7 columns. I am fetching 7 APIs onclick how to 
+render them immediately without wait.
+
+
+respons of fetched api is either paragraph or single line or empty. 
+If it's not empty and it has click here show it as a link .
+
+ change order of 4 divs using css.
+
+config dependencies? if there is a conflict in the dependecy library? how you can overcome that
+
+
+
+------------------------------------------------------
  
 ----------Practical/Scenario questions-------------
 
