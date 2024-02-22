@@ -15,7 +15,7 @@ ng-container in angular
          </div>
          </ng-container>
 
-         2. used on inline content:
+         2. used in inline content:
 
          <div>
          <ng-container *ngIf="error">Oops: </ng-container> //instead of span use ng-container
@@ -35,6 +35,93 @@ ng-container in angular
 
 ```
 
+---
+
+
+**ng-template, ng-container,ng-content, ngTemplateOutlet**
+```
+
+
+
+1. <ng-template></ng-template>:
+
+<ng-template> Angular uses with structural directives ( *ngIf, *ngFor, [ngSwitch], and custom directives).
+
+only work with structural directives
+a template that doesn’t render anything by itself
+It helps us create dynamic templates that can be customized and configured.
+
+<div> 
+   <div *ngIf=”false else showNgTemplateContent”> 
+      Shouldn't be displayed 
+   </div>
+</div>
+ 
+<ng-template #showNgTemplateContent> Should be displayed
+</ng-template>
+
+
+
+2. <ng-container></ng-container>
+
+
+allows you to group elements in a template that doesn’t interfere with styles or layout because Angular doesn’t put it in the DOM
+
+This is helpful if you don’t want any extra div on DOM,
+
+
+For eg: If there are two structural directives being called on one div as below:
+
+<div *ngIf="details" *ngFor="let info of details">
+  {{ info.content }}
+</div>
+
+Error: Can't have multiple template bindings on one element. Use only one attribute prefixed with *
+
+we can solve this using ng-container without adding any extra element in the DOM
+
+<<ng-container> *ngIf="details">
+  <div *ngFor="let info of details">
+    {{ info.content }}
+  </div>
+</<ng-container>>
+
+
+
+3. <ng-content></ng-content>
+
+
+used to project content into Angular components.
+
+Parent component html: 
+
+<app-child>
+  <div> Child Component Details </div>
+</app-child>
+
+
+In child componet
+<ng-content></ng-content>
+
+
+<ng-content> accepts a select attribute,
+
+
+4. ngTemplateOutlet: (ngTemplateOutletContext)
+
+ngTemplateOutlet is a structural directive
+we can create customisable templates
+Before we can use ngTemplateOutlet we must first define a template using <ng-template>
+
+
+
+<ng-template #myTemplate> World! </ng-template>
+
+Hello
+<ng-container [ngTemplateOutlet]="myTemplate"></ng-container>
+
+
+```
 
 
 Dynamic Component
