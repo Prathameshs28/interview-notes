@@ -98,11 +98,11 @@ Error: Can't have multiple template bindings on one element. Use only one attrib
 
 we can solve this using ng-container without adding any extra element in the DOM
 
-<<ng-container> *ngIf="details">
+<ng-container> *ngIf="details">
   <div *ngFor="let info of details">
     {{ info.content }}
   </div>
-</<ng-container>>
+</<ng-container>
 
 
 
@@ -141,7 +141,6 @@ Hello
 
 ```
 
-
 Dynamic Component
 Standalone Component
 Router protection
@@ -164,11 +163,13 @@ resolver
 useFactory useEffect
 angular logging and monitoring
 
+--- 
+
 # Angular interview questions:
 
 
 
-1. what the use of angular?
+### what the use of angular?
 
 ```
       angular is js ui binding framework which binds html ui and js model (view modal)
@@ -183,7 +184,7 @@ angular logging and monitoring
  
 ---
  
- 2. difference between angularjs vs angular
+### Difference between angularjs vs angular
    
 | Sr.no | angularjs | angular ts |
 | ----------- | ----------- | ----------- |
@@ -198,32 +199,32 @@ angular logging and monitoring
 
 ---
  
- 3. what are directives in Angular ?
+### what are directives in Angular ?
  
- ```
-      Directives changes the behavior of HTML DOM.
-      
-      e.g. ngModel, [hidden], {{anything}} 
- ```
+```
+   Directives changes the behavior of HTML DOM.
+   
+   e.g. ngModel, [hidden], {{anything}} 
+```
 
 ---
  
  
- 4. explain the different types of Angular Directives ?
+### Explain the different types of Angular Directives ?
 
- ```
-      3 types SAC (S: Structural, A: Attribute, C: component)
+```
+   3 types SAC (S: Structural, A: Attribute, C: component)
+   
+   1. Structural Directive: change the DOM layout by adding and removing elements.      
+      e.g *ngFor         
+
+   2. Attribute Directive: change the appearance and behaviour of HTML elements      
+      e.g [hidden] , [disable]
       
-      1. Structural Directive: change the DOM layout by adding and removing elements.      
-         e.g *ngFor         
+   3. Component Directive: Directives with templates. Itself directive.
 
-      2. Attribute Directive: change the appearance and behaviour of HTML elements      
-         e.g [hidden] , [disable]
-         
-      3. Component Directive: Directives with templates. Itself directive.
- 
- 
- ```
+
+```
  
  ---
  	
@@ -588,169 +589,130 @@ angular logging and monitoring
 
 29. What are Component
 
-```
-      Components are the main building blocks for Angular applications. Each component consists of: An HTML template that declares what renders on the page. A TypeScript class that defines behavior. A CSS selector that defines how the component is used in a template
-```
+- Components are the main building blocks for Angular applications. 
+- Each component consists of: An HTML template that declares what renders on the page. 
+- A TypeScript class that defines behavior. 
+- A CSS selector that defines how the component is used in a template
 
 ---
 
 30. What is Template
 
-```
-         In Angular, a template is a blueprint for a fragment of a user interface (UI). Templates are written in HTML, and special syntax can be used within a template to build on many of Angular's features.
-```
+- In Angular, a template is a blueprint for a fragment of a user interface (UI). 
+- Templates are written in HTML, and special syntax can be used within a template to build on many of Angular's features.
 
 ---
 
 
 31. What is the difference bektween the Component and a directive?
 
-```
-   1. @Directive annotation used for custom directive 
-   
-                     *** 
-   
-      @Component annotation used for component
 
+|Sr.no| Component | Directive |
+| --------- | --------- | --------- |
+| 1 | @Directive annotation used for custom directive | @Component annotation used for component |
+| 2| used in any existing DOM to add behavior  | template field is used to provide a View of component |
+| 3 | Directives are not limited, comes with different types of directive such as Attribute, Directive and structural directive. | Only one Angular Component can be present for a particular view and this component can be used across angular application using the selector tag. |
+| 4 | The directive should be used whenever you need to add/modify existing DOM behavior based on some action or event performed | Component can be accessed by any other Component within the application |
 
-   2. used in any existing DOM to add behavior 
-
-                     *** 
-      
-      template field is used to provide a View of component
-
-
-   3.  Directives are not limited, comes with different types of directive such 
-       as Attribute, Directive and structural directive.
-
-                     ***
-
-      Only one Angular Component can be present for a particular view and this component 
-      can be used across angular application using the selector tag.
-   
-   4. The directive should be used whenever you need to add/modify existing DOM behavior 
-      based on some action or event performed
-
-                     ***
-
-      Component can be accessed by any other Component within the application
-
-
-```
-
+---
 
 32. Difference between promise and observable ?  
-```
-      1. Emit multiple values over a period of time.
-               ***
-         Emit a single value at a time.
 
-      2. Are lazy: they’re not executed until we subscribe to them 
-         using the subscribe() method.	
-               ***
-         Are not lazy: execute immediately after creation.
 
-      3. Have subscriptions that are cancellable using the unsubscribe() method, 
-         which stops the listener from receiving further values.	
-               ***
-         Are not cancellable.
+| Sr.no | Promises | Observable |
+| ------- | ------- | ------- |
+| 1 | Emit multiple values over a period of time. |  Emit a single value at a time. |
+| 2 | Are lazy: they’re not executed until we subscribe to them using the subscribe() method. | Are not lazy: execute immediately after creation. |
+| 3 | Can be cancellable using the unsubscribe() | Are not cancellable. |
+| 4 | Provide the map for forEach, filter, reduce, retry, and retryWhen operators. | Don’t provide any operations |
+| 5 | Deliver errors to the subscribers. | Push errors to the child promises. |
 
-      4. Provide the map for forEach, filter, reduce, retry, and retryWhen operators.	
-               ***
-         Don’t provide any operations.
+---
 
-      5. Deliver errors to the subscribers.	
-               ***
-         Push errors to the child promises.
 
-```
+### Hot & Cold observables
+
+- When the data source is created inside the observable, it is considered cold. 
+
+- Otherwise, if a data source is created outside, it is a hot observable.
+
+- Cold observables are unicast, whereas hot observables are multicast.
+
+- Cold observables start to emit values only when we subscribe to them. 
+
+- Hot ones emit values always, even if there are no subscribers.
 
 
 ---
 
-33. hot vs cold observables
+### which is best promise or observable ?
 
-```
-      When the data source is created inside the observable, it is considered cold. 
-
-      Otherwise, if a data source is created outside, it is a hot observable.
-      
-      Cold observables are unicast, whereas hot observables are multicast.
-      
-      Cold observables start to emit values only when we subscribe to them. 
-      
-      Hot ones emit values always, even if there are no subscribers.
-
-```
+- Promises are great for handling single asynchronous operations
+- while Observables shine when dealing with multiple asynchronous events over time.
 
 ---
 
-34. which is best promise or observable ?
 
-```
-      Promises are great for handling single asynchronous operations, while Observables shine when dealing with multiple asynchronous events over time.
-```
+### What is RxJs
+
+- RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code.
+
 ---
 
 
-35. What is RxJs
+### rxjs operators
 
-```
-      RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code.
-```
----
-
-
-36. rxjs operators
-
-```
-      1. map() operator: 
+- map() operator: 
       
-      transform the data emitted by an Observable into a new format
+   transform the data emitted by an Observable into a new format
 
-      perform operations such as modifying values, extracting specific properties, or even returning a completely new object
+   perform operations such as modifying values, extracting specific properties, or even returning a completely new object
 
-      e.g:
+```js
+   const source = from([1, 2, 3, 4, 5]);
 
-      const source = from([1, 2, 3, 4, 5]);
+   source.pipe( map (value => value * 2))
+   .subscribe(result => console.log(result));
 
-      source.pipe(
-      map(value => value * 2)
-      ).subscribe(result => console.log(result));
+   // Output: 2, 4, 6, 8, 10
 
-      // Output: 2, 4, 6, 8, 10
+```
 
       
-      2. filter() operator: 
+- filter() operator: 
 
-      allows you to selectively filter the values emitted by an Observable based on a given condition.
+   allows you to selectively filter the values emitted by an Observable based on a given condition.
 
-      e.g:
+```js
 
-      const source = from([1, 2, 3, 4, 5]);
+   const source = from([1, 2, 3, 4, 5]);
 
-      source.pipe(
-      filter(value => value % 2 === 0)
-      ).subscribe(result => console.log(result));
+   source.pipe(filter(value => value % 2 === 0))
+   .subscribe(result => console.log(result));
 
-      // Output: 2, 4
+   // Output: 2, 4
 
-
-      3. debounceTime() operator:
-
-      used to control the frequency of emitted values from an Observable. It waits for a specified duration of inactivity before emitting the most recent value.
+```
 
 
-      const searchInput = document.getElementById('search-input');
+- debounceTime() operator:
 
-      fromEvent(searchInput, 'input').pipe(
-      debounceTime(300)
-      ).subscribe(event => {
-      // Perform search operation here
-      });
+   used to control the frequency of emitted values from an Observable. It waits for a specified duration of inactivity before emitting the most recent value.
+
+```js
+
+   const searchInput = document.getElementById('search-input');
+
+   fromEvent(searchInput, 'input').pipe(
+   debounceTime(300) )
+   .subscribe(event => {
+   // Perform search operation here
+   });
+
+```
 
 
-      4. switchMap() operator:
+      1. switchMap() operator:
 
       often used for handling asynchronous operations, such as making HTTP requests in Angular. It transforms the values emitted by an Observable into a new Observable and automatically unsubscribes from the previous inner Observable when a new value arrives.
 
@@ -909,7 +871,8 @@ angular logging and monitoring
 
       // Output: 1, 3, 6, 10, 15
 
-```
+
+
 ---
 
 
