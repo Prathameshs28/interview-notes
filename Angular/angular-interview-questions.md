@@ -5,25 +5,28 @@ Explain latest features of the angular version you are working on ?
 ng-container in angular
 
 ```
-         ng-container use:
-         avoid redundant elements
-            e.g
-         <ng-container *ngIf="postsList" >       // div
+         ** ng-container use:
+         1. avoid redundant elements
+            e.g:
+
+         <ng-container *ngIf="postsList" >   // instead of div use ng-container
          <div *ngFor="let post of postsList" >
             {{post.id}} : {{post.name}}
          </div>
          </ng-container>
 
-         2. used on inline content
-         e.g
+         2. used on inline content:
+
          <div>
-         <ng-container *ngIf="error">Oops: </ng-container> {{message}}   // span
+         <ng-container *ngIf="error">Oops: </ng-container> //instead of span use ng-container
+         {{message}}
          </div>
 
 
-         3. to Ensure Valid HTML Standards
+         3. to Ensure Valid HTML Standards:
+
          <ul>
-         <ng-container *ngFor="let todo of todos">   // div
+         <ng-container *ngFor="let todo of todos">   // instead of div use ng-container
             <li *ngIf="todo.content !== 'Done'">
                {{ todo.content }}
             </li>
@@ -34,7 +37,7 @@ ng-container in angular
 
 
 
- Dynamic Component
+Dynamic Component
 Standalone Component
 Router protection
 Optimizing angular app
@@ -44,10 +47,6 @@ Offline capabilities using service worker
 Angular Schematics
 ng Deploy
 Managing Multiple Projects in One Folder
-
-
-
-
 
 ActivatedRouteSnapshot
 RouterStateSnapshot
