@@ -59,7 +59,7 @@
 
 ### ng-template, ng-container,ng-content, ngTemplateOutlet
 
-```
+```js
 
 1. <ng-template></ng-template>:
 
