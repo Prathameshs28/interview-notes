@@ -363,13 +363,20 @@ constructor(private http: HttpClient){}
 
 
 Angular DI:
+
 Dependency Injection is a design pattern that helps achieve loose coupling between components by injecting their dependencies rather than creating them within the component.
-Providers: Providers are responsible for creating instances of services and making them available for injection
-Components, services, or other Angular objects can receive their dependencies through constructor injection
+
+Providers: Providers are responsible for creating instances of services and making them available for injection Components, services, or other Angular objects can receive their dependencies through constructor injection
+
 @Injectable: Marks a class as a service that can be injected into other components, services, or directives
+
 @Inject: Specifies a dependency explicitly when there are multiple providers for a given token
+
 constructor(@Inject(MY_MESSAGE) private message: string) {}
+
 @Optional: Allows an injected dependency to be optional. If the dependency is not found, Angular will inject null instead of throwing an error.
+
+
 constructor(@Optional() private myOptionalService: MyOptionalService) {
     this.message = myOptionalService
       ? myOptionalService.getMessage()
@@ -378,7 +385,31 @@ constructor(@Optional() private myOptionalService: MyOptionalService) {
 
 
 
-  _________________________
+@Self: The @Self decorator instructs Angular to look for the dependency only in the 
+      local injector. The local injector is the injector that is part of the current component or directive.
+
+Angular DI Framework to look for the Dependency attached to the current Component.
+
+
+@SkipSelf: The @SkipSelf decorator instructs Angular to look for the dependency in the Parent Injector and upwards.
+
+not to look for the injector in the local injector, but start from the Parent.
+
+
+@Host(): 
+
+@Host() decorator makes Angular to look for the injector on the component itself (similar to the @Self()). But if the injector is not found there, it looks for the injector up to its host component.
+
+
+
+
+we can do this as well:
+
+constructor (@Host() @SkipSelf() @Optional() toys: ToysService) {...}
+
+-----------------------------------------
+
+
 
 
   localeCompare

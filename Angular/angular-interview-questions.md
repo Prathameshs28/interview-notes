@@ -294,6 +294,12 @@ angular logging and monitoring
       for example if you decorate @Component then it says it's
       an angular component if you put @NgModule it becomes a Angular module
 
+      1. Class Decorators: @Component and @NgModule
+      2. Parameter Decorators:  @Inject, @Optional
+      3. Property Decorators: @Output, @Input
+      4. Method Decorators: : @HostListener, @HostBinding
+
+
 ```
  
 ---
@@ -1094,7 +1100,70 @@ In case of multi-step forms, how will you use reactive form in it?
 
 72. what are shared modules
 
-73. what is http interceptor
+73. what is http interceptor:
+
+
+```js
+An interceptor is a middleware service that can intercept HTTP requests and responses from the application to the server. 
+
+The interceptor can modify the requests or responses, add headers or tokens, handle errors, or perform any other necessary actions.
+
+Interceptors are defined as services in Angular, they can be added to the application by providing them in the HTTP_INTERCEPTORS multi-provider token.
+
+
+
+import { Injectable } from '@angular/core';
+import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+  intercept(request: HttpRequest<any>, next: HttpHandler) {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      const authRequest = request.clone({
+        headers: request.headers.set('Authorization', `Bearer ${token}`)
+      });
+      return next.handle(authRequest);
+    }
+    return next.handle(request);
+  }
+}
+
+
+
+AuthInterceptor class implements the HttpInterceptor interface and provides the intercept() method.
+
+ The intercept() method receives the incoming request and the HttpHandler object that allows us to pass the request to the next interceptor or the final HTTP handler.
+
+
+ To use this interceptor in your application, you need to provide it in the HTTP_INTERCEPTORS multi-provider token.
+
+
+ @NgModule({
+  imports: [HttpClientModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
+})
+
+
+In this example, the AuthInterceptor is provided in the HTTP_INTERCEPTORS token as a multi-provider, which means that it can be combined with other interceptors if needed.
+
+
+Interceptors in Angular have several use cases:
+
+1. Authentication and authorization: add authentication tokens or authorization headers to outgoing requests.
+
+2. Error handling: handle global errors that occur during HTTP requests. This can be useful for handling network, timeouts, or server-side errors.
+
+3.Caching: to cache responses from the server, which can improve the performance of your application.
+
+4. Logging: to log HTTP requests and responses. This can be useful for debugging and monitoring your application's performance.
+
+5. Transformation of requests and responses.
+
+
+```
 
 74. What is authguard /routeGuard / guards
 
