@@ -1098,6 +1098,48 @@ In case of multi-step forms, how will you use reactive form in it?
 
 74. What is authguard /routeGuard / guards
 
+```
+Auth Guards is a technique used to protect our routes based on user authentication status.
+
+It will manage different access levels between authenticated and non-authenticated users.
+
+
+1. CanActivate:
+
+ It determines if a user is allowed to navigate a particular route and returns a Boolean value (true or false) or an observable/promise that resolves to a Boolean.
+
+ If the returned value is true, the route is activated; if it’s false, the route is blocked,
+
+
+
+2.CanActivateChild:
+
+same as CanActivate
+specifically used to protect child routes of a particular route.
+
+
+3. CanDeactivate:
+
+allows us to control whether a user is allowed to leave a particular route
+
+use case:
+
+prompt the user for confirmation when navigating away from a route that may have unsaved changes or to perform other checks before allowing the user to leave.
+
+
+4. CanLoad:
+
+used when you want to prevent the lazy-loaded modules from being loaded for users who are not authenticated.
+
+It checks if the user can load the module asynchronously or not.
+
+
+5. Resolve:
+
+This guard is used to resolve data for a route before it is activated. It can be used to fetch data from a backend API and make it available to a component.
+
+```
+
 75. callback promises observable
 
 76. subject vs behaviouralSubject
