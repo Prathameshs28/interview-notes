@@ -1,11 +1,28 @@
-# Most Important & Latest Angular Questions
+#  Most Important & Latest Angular Questions
 
-Explain latest features of the angular version you are working on ?
+### Explain latest features of the angular version you are working on ?
 
-ng-container in angular
+<p>
 
-```
-         ** ng-container use:
+1. Built-in control flow (*ngFor, *ngIf, *ngSwitch)
+2. improvement in lazy loading (@defer)
+3. ssr package
+4. new lifecycle hooks (afterrender, afternextrender)
+5. vite + esBuild builder
+6. DI dev tools
+7. Standalone component
+
+</p>
+
+---
+
+### ng-container in angular
+
+<p>
+
+```js
+       ng-container uses:
+
          1. avoid redundant elements
             e.g:
 
@@ -35,13 +52,14 @@ ng-container in angular
 
 ```
 
+</p>
+
 ---
 
 
-**ng-template, ng-container,ng-content, ngTemplateOutlet**
+### ng-template, ng-container,ng-content, ngTemplateOutlet
+
 ```
-
-
 
 1. <ng-template></ng-template>:
 
@@ -167,24 +185,18 @@ angular logging and monitoring
  
  2. difference between angularjs vs angular
    
-```
-      1. Written in TypeScript (also supports JavaScript) *** Written in JavaScript
-      
-      2. Supported by all popular mobile browsers *** Does not support mobile
-      
-      3. Uses Components and Directives *** Follows Model-View-Controller design
-      
-      4. A hierarchical DI system *** use directives in place of DI
+| Sr.no | angularjs | angular ts |
+| ----------- | ----------- | ----------- |
+| 1 | Written in TypeScript (also supports JavaScript) | Written in JavaScript |
+| 2 | Supported by all popular mobile browsers | Does not support mobile |
+| 3 | Uses Components and Directives | Follows Model-View-Controller design |
+| 4 |A hierarchical DI system| use directives in place of DI | 
+| 5 | CLI tool | not CLI tool |
+| 6 | More SEO-friendly  | less  SEO-friendly|
+| 7 | unit testing with Karma | Requires third-party tools for testing and error detection |
 
-      5. CLI tool  ***	not CLI tool
-      
-      6. More SEO-friendly *** less  SEO-friendly
-      
-      7. unit testing with Karma	*** Requires third-party tools for testing and error detection
-   
-   
-```
- ---
+
+---
  
  3. what are directives in Angular ?
  
