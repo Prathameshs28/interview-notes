@@ -58,3 +58,11 @@ $lookup
 cluster, replica set
 indexing on collection
 query optimization (indexing)
+
+
+
+MVC:
+Systems like Node JS are currently operated on an MVC (Model View Controller) architecture. It’s a design pattern. The idea is that it helps to focus on a specific part of the application and build it on a modular basis. The components are:
+Model: It represents the structure and constraints of the data stored in the database.
+View: It is the way the required data is presented to the user as per the need of the user.
+Controller: This section controls the requests of the user and generates the appropriate response which is fed to the user.
