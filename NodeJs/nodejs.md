@@ -1,17 +1,17 @@
 https://gist.github.com/paulfranco/9f88a2879b7b7d88de5d1921aef2093b
 
-how to create JWT token?
+- how to create JWT token?
 
-Project details
-node js architecture
-event loop
-promises with example
-closures with example
-es 6 features
-arrow vs function
-spread operator vs rest operator
-super keyword
-oops concepts
+- Project details
+- node js architecture
+- event loop
+- promises with example
+- closures with example
+- es 6 features
+- arrow vs function
+- spread operator vs rest operator
+- super keyword
+- oops concepts
 
 
 
@@ -34,34 +34,34 @@ oops concepts
 - what is passport in Nodejs
 - explain auth implementation using JWT
 - explain file module in NodeJs
-how to debug your node.js code?
+- how to debug your node.js code?
 
-HTML template rendering (EJS)
-cluster
-worker thread
-EventEmitter
-fs module- multer
-single threading in node js
-node js working
-multer
-authorization
-authentication
-cron job
-webhook
-streams pipe
-message queue
-node mailer
-$addToSet
-$push, $pull
-aggregation
-$lookup
-cluster, replica set
-indexing on collection
-query optimization (indexing)
+- HTML template rendering (EJS)
+- cluster
+- worker thread
+- EventEmitter
+- fs module- multer
+- single threading in node js
+- node js working
+- multer
+- authorization
+- authentication
+- cron job
+- webhook
+- streams pipe
+- message queue
+- node mailer
+- $addToSet
+- $push, $pull
+- aggregation
+- $lookup
+- cluster, replica set
+- indexing on collection
+- query optimization (indexing)
 
 
 
-MVC:
+**MVC:**
 Systems like Node JS are currently operated on an MVC (Model View Controller) architecture. It’s a design pattern. The idea is that it helps to focus on a specific part of the application and build it on a modular basis. The components are:
 Model: It represents the structure and constraints of the data stored in the database.
 View: It is the way the required data is presented to the user as per the need of the user.

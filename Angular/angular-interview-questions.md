@@ -106,13 +106,9 @@
 
 ##### infinite scrolling npm pacakage
 
-##### What are HTTPIntercepters & why used?
-
-##### Dynamic Component
 
 ##### Standalone Component
 
-##### Router protection
 
 ##### Optimizing angular app
 
@@ -128,23 +124,11 @@
 
 ##### Managing Multiple Projects in One Folder
 
-##### ActivatedRouteSnapshot
+##### ActivatedRouteSnapshot, RouterStateSnapshot ActivatedRoute NavigationEnd NavigationStart ActivatedRoute, Data, Event, NavigationEnd, Router
 
-##### RouterStateSnapshot
-
-##### ActivatedRoute
-
-##### NavigationEnd
-
-##### NavigationStart
-
-##### ActivatedRoute, Data, Event, NavigationEnd, Router
-
-##### useFactory useEffect
 
 ##### angular logging and monitoring
 
-##### Performance optimization?
 
 ##### cross component communication
 
@@ -158,17 +142,6 @@
 
 ##### app module - how to get other than app component as a home component
 
-##### dependency and dev dependency - diff
-
-##### Types of event handler
-
-##### How to handle error in angular? Syntax
-
-##### Explain different types of events in angular?
-
-##### How to manage/handle session in ng
-
-##### What is package.json & its need?
 
 ##### what are html selectors
 
@@ -203,12 +176,28 @@
 ##### How to select multiple data from drop-down
 
 
-##### what are different ways to optimize a given project to minimize the rendering 
 
 ##### load and package size?? anything related to ng build? 
  (Ans: ng build with aot option, instead of default JIT compilation)
 
 ##### how to check bundle size of particular component in angular
+
+- Webpack-bundle-analyzer, a freely available tool, to analyze the bundle size of an angular application. 
+
+- Information from the bundle-size analysis will help you in making an informed decision in order to optimize application load time.
+
+
+```js
+// install the webpack-bundle-analyzer package globally
+npm install webpack-bundle-analyzer -g
+
+// build anguar project
+ng build --configuration production --stats-json
+
+// see stats
+npx webpack-bundle-analyzer dist/test-project/stats.json
+```
+---
 
 ##### how to minimize bundle size of angular build
 
