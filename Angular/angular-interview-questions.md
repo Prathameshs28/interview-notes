@@ -175,8 +175,15 @@
 
 ##### How to select multiple data from drop-down
 
+##### Difference between constructor and ngOnInit
 
+|Sr.no| Constructor | ngOnInit |
+|----------- | ----------- | ----------- |
+| 1 | It is default method of the class | It is a life cycle hook called by Angular  |
+| 2 | executed when the class is instantiated | executed when component is creation done |
+| 3 | constructor() used for all the initialization/declaration | ngOnInit() is a better place to write “actual work code” that we need to execute as soon as the class is instantiated. |
 
+---
 ##### load and package size?? anything related to ng build? 
  (Ans: ng build with aot option, instead of default JIT compilation)
 
