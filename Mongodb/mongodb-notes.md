@@ -399,6 +399,9 @@ company> db.stud.updateOne({name:"virat"},{$set : { age:30 } })
   upsertedCount: 0
 }
 
+* Remove any property from document ($unset)
+
+company> db.employee.updateOne({name:"yogesh"},{$unset:{age:""}})
 
 
 ---
@@ -414,48 +417,178 @@ company> db.stud.update( {hobbies:"cricket"},{$set : {age:100 }},{multi:true}  )
 
 
 
+* findOneAndUpdate
+
+db.stud.findOneAndUpdate({name:"virat"},{$addToSet:{hobbies:"pc games"}})
+
+
+company> db.employee.updateOne({name:"yogesh"},{$set:{age:33 }})
+
+
+company> db.employee.updateMany({age:{$gt : 30}}, {$set:{age:18}})
+
+company> db.employee.updateMany({name:{$in:["I","t"]}},{$set: {name:"test"}}  )
+
+
+Mongodb delete:
+
+
+db.employee.remove({name:"test",age:18})
+
+Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+
+
+company> db.employee.deleteOne({name:"test"})
+
+
+remove all 
+
+db.employee.deleteMany()
+
+
+
+* The Limit() Method:
+
+To limit the records in MongoDB, you need to use limit() method. The method accepts one number type argument, which is the number of documents that you want to be displayed.
+
+
+>db.COLLECTION_NAME.find().limit(NUMBER)
+company> db.employee.find().limit(2)
+
+
+* MongoDB Skip() Method
+Apart from limit() method, there is one more method skip() which also accepts number type argument and is used to skip the number of documents.
+
+
+>db.COLLECTION_NAME.find().limit(NUMBER).skip(NUMBER)
+
+
+company> db.employee.find().skip(1)
+
+or we can use both 
+
+company> db.employee.find().skip(1).limit(2)
+
+
+* The sort() Method
+
+To sort documents in MongoDB, you need to use sort() method. The method accepts a document containing a list of fields along with their sorting order. To specify sorting order 1 and -1 are used. 1 is used for ascending order while -1 is used for descending order.
+
+company> db.employee.find().sort({age:-1})
+
+company> db.employee.find().sort({age:1})
+
+
+* MongoDB - Indexing
+
+
+Indexes support the efficient resolution of queries. Without indexes, MongoDB must scan every document of a collection to select those documents that match the query statement. This scan is highly inefficient and require MongoDB to process a large volume of data.
+
+Indexes are special data structures, that store a small portion of the data set in an easy-to-traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field as specified in the index.
+
+
+The createIndex() Method:
+
+To create an index, you need to use createIndex() method of MongoDB.
+
+
+>db.COLLECTION_NAME.createIndex({KEY:1})
+
+company> db.employee.createIndex({name:1})
+name_1
+
+
+Here key is the name of the field on which you want to create index and 1 is for ascending order. To create index in descending order you need to use -1.
+
+
+company> db.employee.getIndexes()
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1 }, name: 'name_1' }
+]
+
+
+
+we can pass fields while creating index
+
+company> db.employee.createIndex({name:1,age:-1})
+name_1_age_-1
+
+
+background ==>	Boolean ==>	Builds the index in the background so that building an index does not block other database activities. Specify true to build in the background. The default value is false.
+
+unique ==>	Boolean ==>	Creates a unique index so that the collection will not accept insertion of documents where the index key or keys match an existing value in the index. Specify true to create a unique index. The default value is false.
+
+
+name ==>	string ==>	The name of the index. If unspecified, MongoDB generates an index name by concatenating the names of the indexed fields and the sort order.
+
+
+sparse ==>	Boolean ==>	If true, the index only references documents with the specified field. These indexes use less space but behave differently in some situations (particularly sorts). The default value is false.
+
+
+expireAfterSeconds ==>	integer ==>	Specifies a value, in seconds, as a TTL to control how long MongoDB retains documents in this collection.
+
+
+weights	==> document ==>	The weight is a number ranging from 1 to 99,999 and denotes the significance of the field relative to the other indexed fields in terms of the score.
+
+
+
+default_language ==>	string  ==>	For a text index, the language that determines the list of stop words and the rules for the stemmer and tokenizer. The default value is English.
+
+
+
+language_override ==>	string ==>	For a text index, specify the name of the field in the document that contains, the language to override the default language. The default value is language.
 
 
 
 
 
+Drop index:
+
+company> db.employee.getIndexes({name:"name_1"})
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1 }, name: 'name_1' },
+  { v: 2, key: { name: 1, age: -1 }, name: 'name_1_age_-1' }
+]
+company> db.employee.dropIndex({name:1})
+{ nIndexesWas: 3, ok: 1 }
+company> db.employee.getIndexes({name:"name_1"})
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1, age: -1 }, name: 'name_1_age_-1' }
+]
+
+
+or we can use index name directly
+
+company> db.employee.dropIndex("name_1_age_-1")
+{ nIndexesWas: 2, ok: 1 }
 
 
 
+* Create multiple indexes:
+
+company> db.employee.createIndexes([{name:1},{age:-1}])
+[ 'name_1', 'age_-1' ]
+company> db.employee.getIndexes()
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1 }, name: 'name_1' },
+  { v: 2, key: { age: -1 }, name: 'age_-1' }
+]
 
 
+---
+
+* Aggregation
+
+Aggregations operations process data records and return computed results. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result. In SQL count(*) and with group by is an equivalent of MongoDB aggregation.
 
 
+for implementing aggregation we use aggregate() methiod
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+>db.COLLECTION_NAME.aggregate(AGGREGATE_OPERATION)
 
 
 
