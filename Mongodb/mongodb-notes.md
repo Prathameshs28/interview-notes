@@ -594,6 +594,218 @@ for implementing aggregation we use aggregate() methiod
 
 
 
+Expression	Description	Example:
+
+$sum ==>	Sums up the defined value from all documents in the collection.
+==>	db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$sum : "$likes"}}}])
+
+$avg ==>	Calculates the average of all given values from all documents in the collection. ==>	db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$avg : "$likes"}}}])
+
+$min ==>	Gets the minimum of the corresponding values from all documents in the collection. ==>	db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$min : "$likes"}}}])
+
+$max ==>	Gets the maximum of the corresponding values from all documents in the collection. ==>	db.mycol.aggregate([{$group : {_id : "$by_user", num_tutorial : {$max : "$likes"}}}])
+
+$push ==>	Inserts the value to an array in the resulting document. 
+==>	db.mycol.aggregate([{$group : {_id : "$by_user", url : {$push: "$url"}}}])
+
+$addToSet ==>	Inserts the value to an array in the resulting document but does not create duplicates.	
+==> db.mycol.aggregate([{$group : {_id : "$by_user", url : {$addToSet : "$url"}}}])
+
+$first ==>	Gets the first document from the source documents according to the grouping. Typically this makes only sense together with some previously applied “$sort”-stage.
+==>	db.mycol.aggregate([{$group : {_id : "$by_user", first_url : {$first : "$url"}}}])
+
+$last ==>	Gets the last document from the source documents according to the grouping. Typically this makes only sense together with some previously applied “$sort”-stage.
+
+==>	db.mycol.aggregate([{$group : {_id : "$by_user", last_url : {$last : "$url"}}}])
+
+
+
+
+Pipeline Concept
+In UNIX command, shell pipeline means the possibility to execute an operation on some input and use the output as the input for the next command and so on. MongoDB also supports same concept in aggregation framework. There is a set of possible stages and each of those is taken as a set of documents as an input and produces a resulting set of documents (or the final resulting JSON document at the end of the pipeline). This can then in turn be used for the next stage and so on.
+
+
+Following are the possible stages in aggregation framework −
+
+$project − Used to select some specific fields from a collection.
+
+$match − This is a filtering operation and thus this can reduce the amount of documents that are given as input to the next stage.
+
+$group − This does the actual aggregation as discussed above.
+
+$sort − Sorts the documents.
+
+$skip − With this, it is possible to skip forward in the list of documents for a given amount of documents.
+
+$limit − This limits the amount of documents to look at, by the given number starting from the current positions.
+
+$unwind − This is used to unwind document that are using arrays. When using an array, the data is kind of pre-joined and this operation will be undone with this to have individual documents again. Thus with this stage we will increase the amount of documents for the next stage.
+
+
+
+* MongoDB - Replication
+
+
+
+Replication is the process of synchronizing data across multiple servers. Replication provides redundancy and increases data availability with multiple copies of data on different database servers. Replication protects a database from the loss of a single server. Replication also allows you to recover from hardware failure and service interruptions. With additional copies of the data, you can dedicate one to disaster recovery, reporting, or backup.
+
+
+Why Replication?
+
+- To keep your data safe
+- High (24*7) availability of data
+- Disaster recovery
+- No downtime for maintenance (like backups, index - rebuilds, compaction)
+- Read scaling (extra copies to read from)
+- Replica set is transparent to the application
+
+
+
+How Replication Works in MongoDB:
+
+MongoDB achieves replication by the use of replica set. A replica set is a group of mongod instances that host the same data set. In a replica, one node is primary node that receives all write operations. All other instances, such as secondaries, apply operations from the primary so that they have the same data set. Replica set can have only one primary node.
+
+- Replica set is a group of two or more nodes (generally minimum 3 nodes are required).
+
+- In a replica set, one node is primary node and remaining nodes are secondary.
+
+- All data replicates from primary to secondary node.
+
+- At the time of automatic failover or maintenance, election establishes for primary and a new primary node is elected.
+
+- After the recovery of failed node, it again join the replica set and works as a secondary node.
+
+
+
+A typical diagram of MongoDB replication is shown in which client application always interact with the primary node and the primary node then replicates the data to the secondary nodes.
+
+```js
+Client application Driver 
+    ||          ||
+    \/          \/
+
+        Primary
+          ||
+          \/
+        /    \
+       /      \
+      \/      \/
+    Secondary  Secondary
+      (replication of primary)
+```
+
+Replica Set Features:
+
+A cluster of N nodes
+Any one node can be primary
+All write operations go to primary
+Automatic failover
+Automatic recovery
+Consensus election of primary
+
+
+
+* MongoDB - Sharding
+
+Sharding is the process of storing data records across multiple machines and it is MongoDB's approach to meeting the demands of data growth. As the size of the data increases, a single machine may not be sufficient to store the data nor provide an acceptable read and write throughput. Sharding solves the problem with horizontal scaling. With sharding, you add more machines to support data growth and the demands of read and write operations.
+
+
+In replication, all writes go to master node
+
+Latency sensitive queries still go to master
+
+Single replica set has limitation of 12 nodes
+
+Memory can't be large enough when active dataset is big
+
+Local disk is not big enough
+
+Vertical scaling is too expensive
+
+
+
+There are three main components in sharding −
+
+Shards − Shards are used to store data. They provide high availability and data consistency. In production environment, each shard is a separate replica set.
+
+Config Servers − Config servers store the cluster's metadata. This data contains a mapping of the cluster's data set to the shards. The query router uses this metadata to target operations to specific shards. In production environment, sharded clusters have exactly 3 config servers.
+
+Query Routers − Query routers are basically mongo instances, interface with client applications and direct operations to the appropriate shard. The query router processes and targets the operations to shards and then returns results to the clients. A sharded cluster can contain more than one query router to divide the client request load. A client sends requests to one query router. Generally, a sharded cluster have many query routers.
+
+
+
+* MongoDB - Create Backup:
+
+
+Dump MongoDB Data
+
+To create backup of database in MongoDB, you should use mongodump command. This command will dump the entire data of your server into the dump directory. There are many options available by which you can limit the amount of data or create backup of your remote server.
+
+
+Syntax
+The basic syntax of mongodump command is as follows −
+
+>mongodump
+
+
+* MongoDB - Deployment
+
+
+The best approach incorporates prototyping your set up, conducting load testing, monitoring key metrics, and using that information to scale your set up. The key part of the approach is to proactively monitor your entire system - this will help you understand how your production system will hold up before deploying, and determine where you will need to add capacity. Having insight into potential spikes in your memory usage, for example, could help put out a write-lock fire before it starts.
+
+To monitor your deployment, MongoDB provides some of the following commands −
+
+
+- mongostat:
+
+This command checks the status of all running mongod instances and return counters of database operations. These counters include inserts, queries, updates, deletes, and cursors. Command also shows when you’re hitting page faults, and showcase your lock percentage. This means that you're running low on memory, hitting write capacity or have some performance issue.
+
+To run the command, start your mongod instance. In another command prompt, go to bin directory of your mongodb installation and type mongostat.
+
+D:\set up\mongodb\bin>mongostat
+
+
+
+- mongotop:
+
+
+This command tracks and reports the read and write activity of MongoDB instance on a collection basis. By default, mongotop returns information in each second, which you can change it accordingly. You should check that this read and write activity matches your application intention, and you’re not firing too many writes to the database at a time, reading too frequently from a disk, or are exceeding your working set size.
+
+To run the command, start your mongod instance. In another command prompt, go to bin directory of your mongodb installation and type mongotop.
+
+D:\set up\mongodb\bin>mongotop
+
+
+
+D:\set up\mongodb\bin>mongotop 30
+The above example will return values every 30 seconds.
+
+
+
+Apart from the MongoDB tools, 10gen provides a free, hosted monitoring service, MongoDB Management Service (MMS), that provides a dashboard and gives you a view of the metrics from your entire cluster
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

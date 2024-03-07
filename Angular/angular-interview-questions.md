@@ -175,6 +175,59 @@
 
 ##### How to select multiple data from drop-down
 
+
+
+---
+
+#### What is the inject() function
+
+The inject() function takes an InjectionToken as a parameter and returns the value for that InjectionToken from the currently active injector. Basically, it's another way to get a hold of a dependency other than using constructor injection. Here's an example.
+
+```js
+
+   constructor(private http: HttpService) {}
+
+   // instead of above line we can do as below
+
+   httpService = inject(HttpService);
+
+```
+
+* What is the constructor phase
+
+The constructor phase means the constructor function scope and field initializers. This means that you cannot call the inject() function inside @Input() setters or any other function or lifecycle hook. Here is an example to better understand it.
+
+
+Note that you can use the inject() function in Pipes and Directives as well
+
+Reducing component complexity with inject()
+
+
+
+Automatic vs. Manual Dependency Resolution:
+
+Constructor Injection automatically resolves and injects dependencies based on the constructor parameter types.
+inject() Function requires manual resolution of dependencies within the constructor, providing more control over how dependencies are resolved.
+
+Flexibility:
+
+Constructor Injection is more rigid, as dependencies must be declared as constructor parameters.
+inject() Function provides more flexibility, allowing for conditional injection and additional logic before injecting dependencies.
+
+
+Readability:
+
+Constructor Injection is more readable and follows a common pattern in Angular applications.
+inject() Function might be less readable to developers unfamiliar with the new approach, as it deviates from the standard constructor injection pattern.
+
+Migration:
+
+Constructor Injection is the standard approach used in most Angular applications.
+inject() Function introduces a new way to handle DI, which might require migration efforts for existing applications using the traditional approach.
+
+
+---
+
 ##### Difference between constructor and ngOnInit
 
 |Sr.no| Constructor | ngOnInit |
