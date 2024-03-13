@@ -786,6 +786,94 @@ Apart from the MongoDB tools, 10gen provides a free, hosted monitoring service, 
 
 
 
+[text](https://www.tutorialspoint.com/mongodb/mongodb_database_references.htm)
+
+
+* What is a Covered Query?
+
+- All the fields in the query are part of an index.
+- All the fields returned in the query are in the same index.
+
+
+Since all the fields present in the query are part of an index, MongoDB matches the query conditions and returns the result using the same index without actually looking inside the documents. 
+
+Since indexes are present in RAM, fetching data from indexes is much faster as compared to fetching data by scanning documents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
