@@ -1619,13 +1619,315 @@ The $$ROOT vlaue is a  reference to the current document being processed in the 
 
 
 
-* Q. 
+* Q. Give a count per age of male teacher
+
+db.teacher.aggregate([ { $match : {gender: "male"} }, {$group : {_id: "$age", number: { $sum: 1 }} } ])
+
+the value of sum is 1 which means that for each document in the group the value of "number" will be increamented by 1
+
+* Q. Give a count per age of male students and sort them by count in descending manner
+
+db.teachers.aggregate([ {$match: {gender: "male"} }, {$group: {_id:  "$age" , countOfTeachers : {$sum:1 }}}, {$sort : {countOfTeachers:-1}} ])
+
+
+* we can create pipeline as much as we want
+
+
+* Find max numbers in age group:
+
+...., {$sort: {countOfTeachers:-1}}, {$group: {_id:null, maxNumberAge: {$max: "$countOfTeachers"}} }
+
+
+
+* $toDouble operator: 
+
+db.teachers.aggregate([ {$group: {_id:"$age", sumOfAges: {$sum: { $toDouble: "$age" } } }} ])
+
+
+* Q. find hobbies per age group
+
+db.teachers.aggregate([ {$group: {_id: "$age", hobbies: {$push: "$hobbies"} } } ])
+
+
+Date stored in separate doc
+
+
+db.teachers.aggregate([ {$unwind: "$hobbies"} ])
 
 
 
 
+db.teachers.aggregate([ {$unwind: "$hobbies"}, {$group : { _id: "$age", hobbies:"$push": "$hobbies"}} ])
 
 
+* Find number of students per each hobbies
+
+db.teachers.aggregate([ {$unwind: "$hobbies"}, {$group: {_id: "$hobbies", count: {$sum : 1}}} ])
+
+* Find average age of all students
+
+db.teachers.aggregate([ { $group: { _id: null, avgAge: { $avg: "$age" }} } ])
+
+if you specify _id:null in the $group operator it means that all the documents in the collection will be grouped together into a single group
+
+
+* Q. find the total number of hobbies for all the students in a collection
+
+
+db.teachers.aggregate([ {$unwind: "$hobbies"},{$group: {_id:null, count: {$sum:1}}} ])
+
+
+
+- One more way:
+
+db.teachers.aggregate([ {$group: {_id:null,count: { $sum: {$size "$hobbies"}}}} ])
+
+
+Note: above query will produce an error if field not present
+
+
+db.teachers.aggregate([ {$group: {_id: null, count: { $sum:{$size: { $ifNull : ["$hobbies"],[]}} }}} ])
+
+
+
+* Q. List of all hobbies
+
+
+db.teachers.aggregate( [ { $unwind : "$hobbies" }, {$group: {_id: null, allHobbies: {$push:"$hobbies"}}} ] )
+
+
+Note: Hobbies will repeatedly added instead of $push use $addToSet
+
+
+* $filter operator:
+
+input : <array exp>, as : <identifier>, condition:<exp>
+
+- input: specifies the array expession to filter.
+- as : specifies a variable name that can be used inside the condition expression to reference that current element of the input array
+- condition: specifies the condition that must be met in order for an element to be included in the result set. The expression must return either true or false
+
+
+
+* Q. Find average of scores for students whose age is greater than 20
+
+smaple data:
+
+{
+  _id: ,
+  name: "abcd",
+  age: 21,
+  scores: [20,30,40,50,60]
+}
+
+
+db.teachers.aggregate([{$group: {_id: null, avgScore: {$avg: {$filter: {input:"$score",as:"score",cond:{$gt:["$age",20]}}}}}}])
+
+
+# Bucket
+
+when you want to categarize into discrete groups based on specified boundaries.
+
+Q. categories male teachers based on their ages into three buckets ages less than 30 ages between 30 and 40 and ages greater than 40
+
+db.teachers.aggregate([ {$match: {gender: "male"}}, {$bucket:{groupBy:"$age", boundaries:[0,30,40], default: "Greater than 40 group", output: {count: {  $sum: 1}, names:{$push:"$name"}}}} ])
+
+
+
+* $lookup operator:
+
+
+the lookup is an aggregation pipeline stage that allows you to perform a left outer join between two collection
+
+
+Show collections
+
+cust 
+ord
+
+
+Query: 
+
+db.cust.aggregate([ { $lookup: {from: 'ord', localField: "_id",foreignField: "cust_id", as: "orderDetails"} } ])
+
+
+# $project
+
+$project stage is used in the aggregation pipeline to reshape documents include or exclude fields and create computed fields
+
+db.emp.aggregate([ { $project: { fname: 1, lname: 1, _id: 0 } } ])
+
+
+db.emp.aggregate( [ { $project: {fname:1,lname:1,monthlySalary: "$salary", annualSalary: {$multipy: [12, "$salary"]}}} ] )
+
+
+
+* Capped: 
+
+db.createCollection("order_logs", {capped: true, max: 4, size: 100000})
+
+
+db.order_logs.isCapped()
+true
+
+
+# Authenication and Authorization
+
+
+Windows: 
+
+c:\program files\ mongodb\server\<version> \ bin \ mongod.cfg
+
+Linux: sudo nano /etc/mongod.conf
+
+
+security: 
+
+  authorization : enabled
+
+
+Restart service linux:
+
+sudo systemctl restart mongod
+
+or
+
+sudo service mongod restart
+
+
+1. use admin
+
+2. db.getUsers()
+
+3. db.createUser({ user: "adminUser",pwd: "password", roles: ["userAdminAnyDatabase","dbAdminAnyDatabase"] })
+
+4. db.auth("adminUser","password")
+
+5. db.logout()
+
+6. db.dropUser("userName")
+
+
+* Roles:
+
+Read 
+ReadWrite
+dbAdmin
+userAdmin
+dbOwner
+
+
+readAnyDatabase
+readWriteAnyDatabase
+userAdminAnyDatabase
+dbAdminAnyDatabase
+
+clusterManager
+clusterMonitor
+hostManager
+clusterAdmin
+
+dbOwner
+userAdmin
+userAdminAnyDatabase
+root
+
+backup
+restore
+
+
+db.createUser({
+  user: "demo-user-1",
+  pwd: "1234",
+  roles: [ { role: "read", db:"amazon" },{role: "readWrite", db:"customer"} ]
+})
+
+db.runCommand({connectionStatus: 1})
+
+---
+
+# Replication and Sharding
+
+* Transaction:
+
+- A transaction is a set of operations that are executed as a single atomic unit
+
+- Transactions provide data consistency by ensuring that either all the operations within the transaction are commited to the database or none of them are
+
+- Transactions are designed to provide ACID properties
+
+ACID:
+
+1. A (Atomicity):
+
+It guarantees that a transaction is as a single individual unit of work. Either all the operations within the transaction are successfully completed and commited or none of them are. If any part of the transaction fails all changes made by the transaction are rolled back leaving the data in it's original state.
+
+2. C (Consistency) :
+
+It ensures that a transaction brings the database from one valid state to another. It enforces any integrity constaints defined on the data, such as referential integrity or uniqueness constraints. If a transaction violates any constraints the entire transaction is rolled back, preserving data integrity
+
+3. I (Isolation) : 
+
+Isolation ensures that each transaction operates independently of other concurrent transactions. It prevents inter reference between concurrent transactions preserving data integrity and preventing unintended size effects. Isolation levels define different levels of concurrency control, allowing developers to choose the appropriate level of isolation for their use case.
+
+
+4. D (Durability) :
+
+
+Durability guarantees that once a transaction is commited it's changes are permently stored and will survive any subsequent system failures. Commited transactions are made durable by writing their changes to disk or other persistent storage. This ensures that the data is not lost and can be recovered in the event of a crash of failuer.
+
+
+When it comes to transaction, replication is crucial for maintaining the consistency and durability gurantees across multiple documents and collection involved in transaction.
+
+
+* Code:
+
+var session = db.getMongo().startSession();
+
+session.startTransaction();
+
+
+var cust = session.getDatabase('bank').cust;
+
+cust.updateOne({_id:1},{$inc:{bal:-100}});
+
+cust.updaeOne({_id:2},{$inc:{bal:100}})
+
+session.commitTransaction();
+
+// session.abortTransaction();
+
+session.endSession();
+
+---
+
+
+# $year, $month, $dateToString:
+
+db.cust.insertOne({_id:3, name: 'vikas', dob: ISODate("2000-01-22")})
+
+
+date: ISODate("2004-06-08T 14:32:45Z") // UTC
+
+Time Zone offset:
+
+date: ISODate("2004-06-08T 14:32:45Z +2:00")
+
+
+db.stud.find({dob:{$gte:ISODate("2000-01-01")}})
+
+
+date with aggregation:
+
+db.cust.aggregate([  { $group:{_id:{$year:"$dob"}, names:{$push:"$name"}} } ])
+
+
+db.cust.aggregate([{$match:{name:"sham"}}, {$project: {dayOfMonth: {$dayOfMonth: "$dob"},month:{$month:"$dob"}, month: {$month:"$dob"}, dayOfYear :{$dayOfYear: "$dob"}, hour: { $hour : "$dob" }, ms: {$millisecond: "$dob"} }}])
+
+
+* $dateToString:
+
+db.cust.aggregate([ { $project: { name:1,_id:0,dob:{$dateOfString: {format:"%d - %m - %Y %H:%M:%S", date:"$dob"}} } } ])
 
 
 
