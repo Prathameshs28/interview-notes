@@ -800,93 +800,826 @@ Since all the fields present in the query are part of an index, MongoDB matches 
 Since indexes are present in RAM, fetching data from indexes is much faster as compared to fetching data by scanning documents.
 
 
+Lastly, remember that an index cannot cover a query if −
 
+Any of the indexed fields is an array
+Any of the indexed fields is a subdocument
 
 
+# MongoDB - Analyzing Queries
 
+Using $explain
+The $explain operator provides information on the query, indexes used in a query and other statistics. It is very useful when analyzing how well your indexes are optimized.
 
+```js
 
+db.users.find({gender:"M"},{user_name:1,_id:0}).explain()
 
+```
 
 
+We will now look at the fields in this result set −
 
+The true value of indexOnly indicates that this query has used indexing.
 
+The cursor field specifies the type of cursor used. BTreeCursor type indicates that an index was used and also gives the name of the index used. BasicCursor indicates that a full scan was made without using any indexes.
 
+n indicates the number of documents matching returned.
 
+nscannedObjects indicates the total number of documents scanned.
 
+nscanned indicates the total number of documents or index entries scanned.
 
 
 
 
+# Using $hint
 
 
+The $hint operator forces the query optimizer to use the specified index to run a query. This is particularly useful when you want to test performance of a query with different indexes. For example, the following query specifies the index on fields gender and user_name to be used for this query −
 
 
+```js
+>db.users.find({gender:"M"},{user_name:1,_id:0}).hint({gender:1,user_name:1})
+{ "user_name" : "tombenzamin" }
 
+```
 
+To analyze the above query using $explain −
 
+```js
+>db.users.find({gender:"M"},{user_name:1,_id:0}).hint({gender:1,user_name:1}).explain()
 
+```
 
 
+# MongoDB - Atomic Operations
 
 
+Model Data for Atomic Operations
 
+The recommended approach to maintain atomicity would be to keep all the related information, which is frequently updated together in a single document using embedded documents. This would make sure that all the updates for a single document are atomic.
 
 
+```js
 
+db.createCollection("products")
+{ "ok" : 1 }
+> db.productDetails.insert(
+	{
+		"_id":1,
+		"product_name": "Samsung S3",
+		"category": "mobiles",
+		"product_total": 5,
+		"product_available": 3,
+		"product_bought_by": [
+			{
+				"customer": "john",
+				"date": "7-Jan-2014"
+			},
+			{
+				"customer": "mark",
+				"date": "8-Jan-2014"
+			}
+		]
+	}
+)
 
+```
 
+ whenever a new customer buys the product, we will first check if the product is still available using product_available field. If available, we will reduce the value of product_available field as well as insert the new customer's embedded document in the product_bought_by field
 
 
+ ```js
+>db.products.findAndModify({ 
+   query:{_id:2,product_available:{$gt:0}}, 
+   update:{ 
+      $inc:{product_available:-1}, 
+      $push:{product_bought_by:{customer:"rob",date:"9-Jan-2014"}} 
+   }    
+})
 
+ ```
 
+Note: However, it is possible that between the executions of these two queries, some other user has purchased the product and it is no more available. Without knowing this, our second query will update the purchase information based on the result of our first query. This will make the database inconsistent because we have sold a product which is not available.
 
 
 
+# MongoDB - Advanced Indexing
 
+# MongoDB - Indexing Limitations
 
 
+Extra Overhead :
 
+Every index occupies some space as well as causes an overhead on each insert, update and delete. So if you rarely use your collection for read operations, it makes sense not to use indexes.
 
 
+RAM Usage: 
 
+Since indexes are stored in RAM, you should make sure that the total size of the index does not exceed the RAM limit. If the total size increases the RAM size, it will start deleting some indexes, causing performance loss.
 
 
+Query Limitations
+Indexing can't be used in queries which use −
 
+- Regular expressions or negation operators like $nin, $not, etc.
+- Arithmetic operators like $mod, etc.
+- $where clause
 
 
+Index Key Limits: 
 
+Starting from version 2.6, MongoDB will not create an index if the value of existing index field exceeds the index key limit.
 
 
+Index Key Limits: 
 
+Starting from version 2.6, MongoDB will not create an index if the value of existing index field exceeds the index key limit.
 
 
+Maximum Ranges: 
+- A collection cannot have more than 64 indexes.
+- The length of the index name cannot be longer than 125 characters.
+- A compound index can have maximum 31 fields indexed.
 
 
+# MongoDB - ObjectId
 
+An ObjectId is a 12-byte BSON type having the following structure −
 
+The first 4 bytes representing the seconds since the unix epoch
+The next 3 bytes are the machine identifier
+The next 2 bytes consists of process id
+The last 3 bytes are a random counter value
 
 
 
+MongoDB uses ObjectIds as the default value of _id field of each document, which is generated while the creation of any document. The complex combination of ObjectId makes all the _id fields unique.
 
 
+* Creating New ObjectId
 
 
+newObjectId = ObjectId()
 
+```js
+> const objId= ObjectId();
 
+> console.log(objId)
+ObjectId('65f14d83b7f572c2c76c85c5')
 
 
+```
 
 
 
+* Creating timestamp of a document
 
+Since the _id ObjectId by default stores the 4-byte timestamp, in most cases you do not need to store the creation time of any document.
 
+```js
 
+console.log(objId.getTimestamp())
+ISODate('2024-03-13T06:53:55.000Z')
 
+```
 
 
+Converting ObjectId to String
 
 
+```js
+
+console.log(objId.toString());
+
+65f14d83b7f572c2c76c85c5
+
+```
+
+
+* MongoDB - Map Reduce
+
+
+MongoDB uses mapReduce command for map-reduce operations. MapReduce is generally used for processing large data sets.
+
+(Collection.mapReduce() is deprecated. Use an aggregation instead )
+
+
+* MongoDB - Text Search
+
+```js
+
+db.posts.createIndex({post_text:"text"})
+
+db.posts.find({$text:{$search:"tutorialspoint"}})
+
+```
+
+
+
+# MongoDB - Regular Expression
+
+MongoDB also provides functionality of regular expression for string pattern matching using the $regex operator. MongoDB uses PCRE (Perl Compatible Regular Expression) as regular expression language.
+
+
+```js
+
+db.posts.find({ post_text:{$regex:"tutorialspoint"  }  })
+
+
+or we can also written as 
+
+db.posts.find({post_text:/tutorialspoint/})
+
+```
+
+# MongoDB - GridFS
+
+
+GridFS is the MongoDB specification for storing and retrieving large files such as images, audio files, video files, etc. It is kind of a file system to store files but its data is stored within MongoDB collections. GridFS has the capability to store files even greater than its document size limit of 16MB.
+
+GridFS divides a file into chunks and stores each chunk of data in a separate document, each of maximum size 255k.
+
+GridFS by default uses two collections fs.files and fs.chunks to store the file's metadata and the chunks. Each chunk is identified by its unique _id ObjectId field. The fs.files serves as a parent document. The files_id field in the fs.chunks document links the chunk to its parent.
+
+
+# MongoDB - Capped Collections
+
+
+Capped collections are fixed-size circular collections that follow the insertion order to support high performance for create, read, and delete operations. By circular, it means that when the fixed size allocated to the collection is exhausted, it will start deleting the oldest document in the collection without providing any explicit commands.
+
+Capped collections restrict updates to the documents if the update results in increased document size. Since capped collections store documents in the order of the disk storage, it ensures that the document size does not increase the size allocated on the disk. Capped collections are best for storing log information, cache data, or any other high volume data.
+
+
+
+db.createCollection("cappedLog",{capped:true,size:10000})
+
+db.cappedLog.isCapped()
+true
+
+
+
+db.createCollection("cappedUserLog",{capped:true,size:1000,max:10})
+{ ok: 1 }
+
+
+If you want to check whether a collection is capped or not, use the following isCapped command −
+
+> db.stud.isCapped()
+false
+
+we can create stud as capped below
+
+> db.runCommand({"convertToCapped":"stud",size:10000,max:20})
+{ ok: 1 }
+> db.stud.isCapped()
+true
+
+
+
+Querying Capped Collection:
+
+By default, a find query on a capped collection will display results in insertion order. But if you want the documents to be retrieved in reverse order, use the sort command as shown in the following code −
+
+db.stud.find().sort({$natural:-1})
+
+
+
+# MongoDB - Auto-Increment Sequence
+
+
+
+Using Counter Collection
+Consider the following products document. We want the _id field to be an auto-incremented integer sequence starting from 1,2,3,4 upto n.
+
+
+{
+  "_id":1,
+  "product_name": "Apple iPhone",
+  "category": "mobiles"
+}
+
+
+For this, create a counters collection, which will keep track of the last sequence value for all the sequence fields.
+
+>db.createCollection("counters")
+
+
+db.counters.insert({
+	"_id":"productid",
+	"sequence_value": 0
+})
+
+
+
+
+The field sequence_value keeps track of the last value of the sequence.
+
+Use the following code to insert this sequence document in the counters collection −
+
+>db.counters.insert({_id:"productid",sequence_value:0})
+
+
+Creating Javascript Function
+Now, we will create a function getNextSequenceValue which will take the sequence name as its input, increment the sequence number by 1 and return the updated sequence number. In our case, the sequence name is productid.
+
+>function getNextSequenceValue(sequenceName){
+   var sequenceDocument = db.counters.findAndModify({
+      query:{_id: sequenceName },
+      update: {$inc:{sequence_value:1}},
+      new:true
+   });
+   return sequenceDocument.sequence_value;
+}
+
+
+
+Using the Javascript Function
+We will now use the function getNextSequenceValue while creating a new document and assigning the returned sequence value as document's _id field.
+
+Insert two sample documents using the following code −
+
+>db.products.insert({
+   "_id":getNextSequenceValue("productid"),
+   "product_name":"Apple iPhone",
+   "category":"mobiles"
+})
+>db.products.insert({
+   "_id":getNextSequenceValue("productid"),
+   "product_name":"Samsung S3",
+   "category":"mobiles"
+})
+
+
+
+
+<!-- Notebook notes -->
+
+MySQL <------> Mongodb
+
+Database = Database
+Table = Collection
+Rows = Document (JSON Format)
+
+BSON: Binary JSON
+
+It is binary structure encodes type and length information which allow it to be traversed much more quickly compared to json.
+
+1) create DB
+
+use demo_db
+
+2) create collection with insert document
+
+db.students.insertOne({})
+
+or 
+
+db.createCollection("products")
+
+
+* Document nesting level 100
+
+* Every document having max limit of 16 MB
+
+db.students.find().forEach((x)=> {printjson(x.name)});
+
+instead of prinjson we can use console.log()
+
+* with using "$" symbol any text means reserved words in mongo db.
+
+# Projection:
+
+db.stud.find({},{name:1,_id:0})
+
+it include only names and excludes age and _id
+
+
+# Data types in mongo DB
+
+1. Text 
+2. Boolean 
+3. Number (Integer (32 bit), Number long (64 bit), Number Decimal )
+4. ObjectId
+5. IsoDate
+6. Timestamp
+7. Array
+8. Embeded Documents
+
+
+* Drop DB:
+
+db.dropDatabase()
+ 
+* Drop collection
+
+db.stud.drop()
+
+
+* Write concern in mongodb:
+
+db.books.insertOne({name:"A",price:20},{writeConcern: {w:0}})
+
+
+* Atomicity in Mongodb:
+
+import json into mongodb using mongoimport (db tool)
+
+
+* Query: 
+
+mongoimport "/home/am-lp-44/downloads/dummy.json" -d college -c stud --jsonArray --drop
+
+here college is DB and stud is Collection
+
+
+* Comparison operators in Mongodb:
+
+$eq
+$ne
+$lt
+$gt
+$lte
+$gte
+$in
+$nin
+
+
+* Logical Operators
+
+$and
+$or
+$nor
+$not
+
+* $exits and $type operators:
+
+db.stud.find({hasMobile:{$exists:true,$type:8}})
+
+or 
+
+for $type : 8 we can use as $type: 'bool'
+
+
+
+* Evaluation operators:
+
+$expr
+$jsonSchema
+$mod
+$regex
+$text
+$where
+
+
+* $text:
+
+db.stud.createIndex({bio:"text"})
+
+db.stud.find({$text:{ $search:"dev" }})
+
+
+* Querying arrays
+
+db.stud.find().count()
+
+or 
+
+db.stud.find().size()
+
+db.stud.find({experience: {$size:3}})
+
+
+* Greater than 4 skills
+
+db.stud.find({$and:[{skills: { $exists:true}},{$expr:{$gte: [{$size:"$skills"},4] }}]});
+
+
+* Update array using $push and $each 
+
+
+db.stud.updateOne({name:'Vikram'},{$push:{skills:{$each:['java','C#','Angular']}}},{upset:true})
+
+
+students whose hobbies are walking and reading
+
+db.stud.find({hobbies:{$all: [ "walking","reading" ] }})
+
+instead of $all we can use $in
+
+
+Product whose name is apple and with quantity greater than 15
+
+db.products.find({products: { $elemMatch : { quantity : { $gt : 11 }, name : "apple" } } })
+
+
+* Sorting : 
+
+
+Asc : db.stud.find().sort({age:1})
+
+Desc: db.stud.find().sort({age:-1})
+
+
+if users having same age then we can add multiple sorting
+
+db.stud.find().sort({age:1,name:1})
+
+
+$inc
+$min
+$max
+$mul
+$unset
+$rename
+$upsert
+
+
+1) db.emp.updateMany({},{$inc: {salary : 500 } })
+
+for decrease -> {salary: -500 }
+
+
+
+2) db.emp.updateOne({name:"Ramesh"},{$max:{age:50}})
+
+
+for min -> {$min:{age:-50}}
+
+3) {$mul : { age: 2 } }
+
+4) { $unset : {age: 222} }
+
+it removes age property
+
+5) updateMany({$rename:{age:"emp_age"}})
+
+it renames property key name
+
+
+* if record exists update it but if record not found create new record
+
+db.emp.updateOne({name:"Vijay"},{$set:{emp_age:90}},{upsert:true})
+
+
+* Array update:
+
+$push
+$pull
+$pop
+$addToSet
+
+* Employee having less than and equal to 1 yr of exp
+
+db.emp.find({exp:{$elemMatch:{exp_yr:{$lte:1}}}})
+
+* add {neglect : true} property with only first matched item having less than 1 yr exp
+
+db.emp.updateMany({exp:{$elemMatch:{exp_yr:{$lte:1}}}}, {$set:{"exp.$.neglect" : true}});
+
+
+* add neglect: 1 for all matched and unmatched
+
+({},{$set: { "experience.$[].neglect":1 }})
+
+
+* add neglect for all matched
+
+({},{$set:{"exp.$[e].neglect":true}},{arrayFilters:[{"e.duration": {$lte:1} }]})
+
+
+* $push:
+
+db.emp.updateOne({name:"ram"},{$push:{exp:{company:"MSoft",exp_yr:2}}})
+
+
+if we pushed same data multiple times it will pushed. Redundancy is happening
+
+for avoid such issues use $addToSet instead of $push
+
+
+* $pull - removes all matched data
+
+
+db.emp.updateOne({name:"ram"},{$pull:{exp:{company:{"x-soft",exp_yr:2}}}})
+
+
+* $pop: removes last entry
+
+({$pop:{exp:1}})
+
+
+* for removing 1st set as -1
+
+{$pop:{exp:-1}}
+
+
+* Indexing in MongoDB:
+
+
+- Indexes are stored in a B-tree data structure
+
+- It stores
+
+1. Index keys
+2. Pointers to the documents in the collection
+
+- when a query is executed mongodb can use the index to quickly locate the documents that match the query by searching through the B-tree.
+
+
+* The Trade off
+
+1. storage space: index requires separate storage
+2. Write performance: will be slow it is good for read intensive task
+
+
+* There are several types of indexes available in mongodb
+
+1. single field indexes
+2. compound indexes
+3. text indexes
+
+
+* get detailed info about query
+
+
+db.teachers.find().explain()
+
+
+db.teachers.find().explain("executionStats")
+
+
+# 1 Single field Index:
+
+
+Create index:
+
+db.emp.createIndex({age:1})
+
+db.emp.getIndexes()
+
+
+* Drop index:
+
+db.emp.dropIndex("age_1")
+
+
+when not to use indexing in mongodb
+
+1. when the collection is small 
+2. when the collection is frequently updated
+3. when the queries are complex (multiple feilds)
+4. when the collection is large (make less indices)
+
+# 2 Compound Indexes:
+
+db.emp.createIndex({age:1,"gender:-1})
+
+firstly by age sorting/indexing done. if age same then genderwise sorting (in desceding order) will done.
+
+
+* 3 Cases:
+
+i. db.emp.find({age:{$gte:27},gender:"male"}).explain("executionStats");
+
+ii. db.emp.find({age:{$gte : 27}}).explain("executionStats")
+
+above both will scan on basis of index (Ixscan)
+
+iii. db.emp.find({gender:"male"}).explain("executionStats")
+
+above will scan on basis of collection (collscan)
+
+
+* Indexing also help in sorting 
+
+db.emp.createIndex({name:1},{unique:true})
+
+* Partial filters:
+
+db.emp.createIndex({age:1})
+
+{partialFilterExpression : {age:{$gt : 22 }}}
+
+
+* db.teachers.createIndex({name:1}, {partialFilterExpression :{gender : {$exists : true} }})
+
+* db.teachers.createIndex({"expire":1},{expireAfterSeconds:3600})
+
+this works on date fields and on single field index.
+
+
+* What is a covered query?
+
+A covered query is a query which 
+
+- all the fields in the query are part of an index.
+- all the fields returned in the query are in the same index.
+
+* Find only name:
+
+db.emp.find({name:"mark"},{_id:0,name:1}).explain("executionStats");
+
+
+* Winning plan:
+
+In case of multiple indexes mangodb checks the performance of index on a sample of documents once the queries is run and 
+set it as winning plan.
+
+Then for second query of similar type it doesn't race them again.
+
+it store that winning plan in cache.
+
+* Cache is reset after:
+
+1. After 1000 writes
+2. Index is reset
+3. Mongo server is restarted
+4. Other indexes are manipulated
+
+db.emp.find({name:"Mike"}).explain("allPlansExecution")
+
+
+* Multi-Key Index:
+
+- A multi key index is an index that can be created on an array field
+
+- Mongodb will create a separate index entry for each value in each array
+
+- so it can quickly look up documents that match a specific value.
+
+
+# 3 Text index:
+
+- single text index per collection
+- tokenization and stemming
+- relevance score
+
+db.emp.createIndex({name:"text", bio: "text"})
+
+-> db.emp.find({$text:{ $text : {$search : "singer" } }});
+
+we can check score of index as well{}
+
+db.stud.find({$text : {$search : "youtube actor"}}, {myscore:{$meta: "textScore" }})
+
+
+we can execute the value as well.
+
+db.stud.find({$text:{$search: "youtube-actor"}}, {myScore:{$meta:"textScore"}});
+
+we can set priorities as well to properties.
+
+db.emp.createIndex({name:"text",bio:"text"},{weights:{name:1000,bio:1}})
+
+
+
+* To find above with sorting
+
+db.emp.find({$text : {$search : "actor sita" }}.{myScore:{$meta : "textScore"}}).sort({myScore: {$meta:"textScore"}})
+
+
+suppose there is million's of data and we have hitted the index query then in background mongodb lock the collection and any query will not be execute so instead of this we can set {background:true} so in background we can execute queries which are not dependent on indexing and indexing related queries will be locked these all process will done in forground.
+
+
+db.stud.createIndex({name:"text",bio:"text"},{background:true})
+
+
+# Aggregation
+
+It group the data from multiple documents into a single document based on the specified expression.
+
+Aggregation Pipeline:
+
+The aggregation process in mongodb consist of several stages each stage transforming the data in same way.
+
+The output of one stage is fed as input to next stage and so on until the final stage produce the desired result.
+
+Mongodb provides several built in aggregation pipeline stages to perform various operations on the data such as $group, $sum, $avg, $min, $max etc
+
+db.teachers.aggregate({$match: {gender: "male"}})
+
+* Group teachers by age:
+
+db.teachers.aggregate([{$group:{_id:"$age"}}])
+
+
+The $group operator groups documents by the age field creating a new document for each unique age value.
+
+The _id field in the group stage specifies the field based on which the documents will be grouped.
+
+db.teachers.aggregate([ { $group : { _id : "$age", name:{ $push :  "$name"  } } } ])
+
+* To copy entire document in array
+
+db.teachers.aggregate([ { $group : {_id : "$age", entireDoc:{ $push : { "$$ROOT" } } } } ])
+
+The $$ROOT vlaue is a  reference to the current document being processed in the pipeline which represents the complete document.
+
+
+
+* Q. 
 
 
 
