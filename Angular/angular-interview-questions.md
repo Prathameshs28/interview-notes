@@ -425,13 +425,13 @@ Hello
  
 ##### Difference between angularjs vs angular
    
-| Sr.no | angularjs | angular ts |
+| Sr.no | angular ts | angular js |
 | ----------- | ----------- | ----------- |
 | 1 | Written in TypeScript (also supports JavaScript) | Written in JavaScript |
 | 2 | Supported by all popular mobile browsers | Does not support mobile |
 | 3 | Uses Components and Directives | Follows Model-View-Controller design |
 | 4 |A hierarchical DI system| use directives in place of DI | 
-| 5 | not CLI tool | CLI tool |
+| 5 |  CLI tool | no CLI tool |
 | 6 | More SEO-friendly  | less  SEO-friendly|
 | 7 | unit testing with Karma | Requires third-party tools for testing and error detection |
 
