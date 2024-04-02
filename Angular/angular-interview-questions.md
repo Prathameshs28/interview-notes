@@ -882,7 +882,7 @@ Hello
 ##### What is the difference bektween the Component and a directive?
 
 
-|Sr.no| Component | Directive |
+|Sr.no| Directive | Component |
 | --------- | --------- | --------- |
 | 1 | @Directive annotation used for custom directive | @Component annotation used for component |
 | 2| used in any existing DOM to add behavior  | template field is used to provide a View of component |
@@ -894,7 +894,7 @@ Hello
 ##### Difference between promise and observable ?  
 
 
-| Sr.no | Promises | Observable |
+| Sr.no | Observable | Promises |
 | ------- | ------- | ------- |
 | 1 | Emit multiple values over a period of time. |  Emit a single value at a time. |
 | 2 | Are lazy: they’re not executed until we subscribe to them using the subscribe() method. | Are not lazy: execute immediately after creation. |
