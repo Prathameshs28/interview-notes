@@ -40,6 +40,62 @@
 ---
 
 
+Css interview questions:
+
+* Basic:
+
+1. What is css and what are its key features?
+2. explain the difference between margin and padding
+3. how does the box model work in css?
+4. describe the concept of specificity in css
+5. explain the difference between inline, block, inline-block elements
+6. what are pseudo classes and pseudo elements in css?
+7. how do you center elements horizontally and vertically in css?
+8. what is the difference between position: relative,absolute and fixed
+9. how do you implement responsive design in css?
+10. what is the difference between display : none and visibility : hidden?
+
+* Layout and flexbox
+
+1. what are css selectors and how do you use them?
+2. explain the concept of the css box-sizing property
+3. describe the difference between flexbox and grid layout
+4. how do you handle browser compatibility issues in css?
+5. what is purpose of the z-index property in css?
+6. explain the concept of css trasitions and animations
+7. how do you vertically align text in css?
+8. describe the difference between em and rem units in css
+9. what is the clearfix hack and when is it used?
+10. how can you optimize css for performance?
+
+* Floats and gradients
+
+1. what are css floats and how do they work?
+2. explain the concept of css specificity
+3. how do you implement a sticky footer in css?
+4. desc the difference between relative, absolute and fixed poisitioning?
+5. what is the purpose of the css transform property
+6. how do you create css sprites and why are they used?
+7. explain the concept of css preporocessors like SASS and LESS
+8. desc the difference between margin collapsing and margin collapsing prevention
+9. how do you handle vendor prefixes in css?
+10. what are the advantages and disadvantes of using css frameworks like bootstrap? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
