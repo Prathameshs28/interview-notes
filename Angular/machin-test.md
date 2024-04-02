@@ -181,3 +181,15 @@ config dependencies? if there is a conflict in the dependecy library? how you ca
 3. Scenario: 3api call- if get response from all , then only page should be load
 
 -----------------------
+
+On click of button focus in input 
+
+<input #inpVariable type="text" class="inp">
+<button (click)="setFocus()">Click here</button>
+
+
+@ViewChild('inpVariable') inpVariable!: ElementRef;
+setFocus() {
+  this.inpVariable.nativeElement.focus();
+}
+
