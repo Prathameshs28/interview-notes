@@ -1,3 +1,46 @@
+1. What is js?
+2. explain the difference between let,const and var
+3. how does hoisting work in js?
+4. describe the conecept of clousures
+5. explain the event loop in js
+6. what is the difference between == and ===
+7. how do you check the type  of a variable in js?
+8. what is the use of the this keyword in js?
+9. explain the difference between function declaration and function expression
+10. how does the setTimeout function work?
+11. what is a callback function?
+12. explain the concept of pure function
+13. describe the difference between funcion.call, function.apply, function.bind
+14. what is the purpose of the arguments object in a function?
+15. how do you create a closure in js?
+16. what is the use of the bind method?
+17. what is the difference between a shallow  copy and deep copy
+18. how does the call stack work in javascript
+19. explain the concept of function currying
+20. how can you avoid callback hell in javascript
+21. what is prototype in inheritance
+22. how do you create and object in js
+23. what is the purpose of prototype property in js
+24. explain the difference between Object.create and the constructor pattern
+25. how do you add a property to an object in js
+26. what is the hasOwnProperty to an object in js
+27. how can you prevent modification of object properties in js
+28. describe the use of the new keyword
+29. explain the concept of object destructuring in js
+30. what is difference between null and undefined
+31. what is the DOM
+32. how do you select elements with vanilla js
+33. explain event delegation in js
+34. what is the purpose of the addEventListener method
+35. how do you create and remove elements in the DOM
+36. explain the concept of event propagation
+37. how can you prevent the default behaviour of an event
+38. what is the purpose of the data-attribute in html
+39. describe the difference between innerHHTML and textContent
+40. how do you handle asynchronous code in js?
+
+
+
  
 
 1. How Javascript works and Execution Context ?
