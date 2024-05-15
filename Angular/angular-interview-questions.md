@@ -1811,5 +1811,26 @@ constructor(private http: HttpClient){}
 }
 
 ```
+### Angular DOM vs. native DOM Manipulation
+
+Angular uses its own abstraction layer to manipulate the DOM, which means you don't have to deal with the native DOM APIs directly.
+
+Template syntax - ngFor, ngIf
+Renderer2
+ElementRef
+ViewChild and ViewChildren:
+ContentChild / ContentChildren
+ViewContainerRef
+
+
+
+While native DOM manipulation can offer more control, it's generally not recommended in Angular applications because it can lead to less maintainable code and may introduce security vulnerabilities like XSS (Cross-Site Scripting) attacks.
+
+Performance: While Angular's change detection and rendering mechanisms are efficient in most cases, there could be situations where direct DOM manipulation is faster. For example, in large data-bound tables, using native DOM APIs might provide better performance.
+
+Learning curve: Angular's abstractions, such as template syntax and Renderer2, may take some time to learn, especially for developers who are new to the framework or have experience with other libraries or frameworks that rely on direct DOM manipulation.
+
+Integration with third-party libraries: Integrating Angular with third-party libraries that rely on direct DOM manipulation can be more challenging compared to frameworks that don't have built-in abstractions for DOM manipulation.
+
 
 ---
