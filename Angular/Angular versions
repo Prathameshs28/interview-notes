@@ -1,0 +1,130 @@
+Angular 2
+
+1. rewrite in typescript
+2. component based
+3. es 6 and typescript support
+
+
+Angular 3
+
+angular router was already in v3 and releasing angular 3 with router 4 will create confusion
+
+To avoid this confusion they decided to skip the version 3 
+
+
+Angular 4
+
+1. changes in core library
+2. else bloack in *ngIf introduced
+3. AOT improvement
+
+
+Angular 5
+
+1. Build optimizer
+2. ng Universal - SSR
+3. new router events
+
+
+Angular 6
+
+1. ng-template
+2. providers array
+3. angular elements
+
+
+Angular 7
+
+1. CLI changes
+2. core framework changes
+
+
+Angular 8
+
+1. added support for saas
+2. forms updates
+3. performance improvement
+
+
+Angular 9
+
+1. Ivy as default compiler
+2. new options for ProvidedIn 
+3. reliable ng-update
+
+
+Angular 10
+
+1. Language services
+2. compiler update
+3. localization
+
+Angular 11
+
+1. updated HMR support
+2. improved ngcc compiler
+3. webpack 5 support
+
+
+Angular 12
+
+1. Deprecating support for IE 11
+2.improved logging and reporting
+3. HTTP improvement
+
+
+Angular 13
+
+1. View engine no longer available
+2. Improvements in CLI
+3. Component API updates
+
+
+Angular 14
+
+1. Optimized build process
+2. Angular elements v3
+3. streamlined i18n workflow
+
+
+Angular 15
+
+1. Standalone API
+2. Directive composition API
+3. Image directive (NgOptmized image)  stable
+4. extended esbuild support
+
+
+Angular 16
+
+1. Angular signals
+2. SSR improvements
+3. Experimental Jest support
+4. introduced Vite build system
+5. Required inputs
+6. Router inputs
+7. standalone project support
+
+
+Angular 17 
+
+1. new built in control flow (ngIf & ngfor & ngSwitch)
+2. improved performance with esbuild
+3. enhanced deferred loading
+4. improved ssr
+
+
+Angular 18
+
+1. Enhanced ssr
+2. Automatic modern and legacy bundles
+3. Ivy rendering engine enhacement
+4. streamlined forms module
+5. improved CLI and Tooling
+
+
+
+
+
+
+
