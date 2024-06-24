@@ -176,6 +176,31 @@
 ##### How to select multiple data from drop-down
 
 
+#### Ivy Rendering Engine:
+
+Ivy is the code name for Angular’s next-generation compilation and rendering pipeline. Starting from the ninth version release of Angular, the new compiler and runtime instructions are used by default instead of the older compiler and runtime, known as View Engine.
+Features of Angular Ivy:
+Internationalization and Type Checking Updates
+Smaller bundle size (using tree-shaking)
+Faster testing (improved testbed)
+Better debugging (improved stack trace)
+improved css class & style binding
+improved type checking
+improved build errors
+improved build times (AOT) 
+
+---
+
+#### AOT compiler features:
+
+AOT Compilation
+Angular app require a compilation process before they can run in a browser.
+JIT (Just in Time): compiles app in browser at runtime
+AOT (Ahead of time): compiles app in browser at build time
+Compilation phase:
+Phase 1: code analysis
+Phase 2: Code Generation
+Phase 3: Template Type checking
 
 ---
 
