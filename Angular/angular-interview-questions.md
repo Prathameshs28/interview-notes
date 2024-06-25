@@ -40,7 +40,6 @@
 
 ##### how to create a service ?
 
-##### dependency injection and why we used?
 
 ##### As we can also import the services in the components directly by creating the object of that services. So why we are using the dependency injection?
 
@@ -175,6 +174,21 @@
 
 ##### How to select multiple data from drop-down
 
+---
+
+##### what is dependency injection and why we used?
+
+Dependency Injection is an application design pattern which is used to achieve efficiency and modularity by
+creating objects which depend on another different object.
+
+Advantages of using Dependency Injection
+
+* It reduces dependencies
+* Code reusability
+* Better and understandable code
+* Testable
+* Loosely-coupled code
+* It prevents circular dependencies
 
 ---
 
