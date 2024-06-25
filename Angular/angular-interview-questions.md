@@ -176,6 +176,30 @@
 ##### How to select multiple data from drop-down
 
 
+---
+
+#### What are the different Routing Strategies in Angular?
+
+##### 1. Path Location Strategy:
+
+By default, in Angular, Path location strategy is used to implement routing using HTML5 history API called pushState.
+
+##### 2. Hash Location Strategy:
+
+To enable Hash-based routing, we need to use Hash location strategy when Hash (#) will be appended to
+the URL.
+
+```
+Export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash:true
+}); 
+```
+
+https://localhost:4200/#/dashboard
+
+it never sent the remaining part after # from the URL to the server (request to the server will be only to localhost: 4200/Employees)
+
+
+---
 #### Ivy Rendering Engine:
 
 Ivy is the code name for Angular’s next-generation compilation and rendering pipeline. Starting from the ninth version release of Angular, the new compiler and runtime instructions are used by default instead of the older compiler and runtime, known as View Engine.
