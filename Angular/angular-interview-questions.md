@@ -178,6 +178,70 @@
 
 ---
 
+#### Explain the types of Route loading
+
+Pre-Loading
+Eager Loading
+Lazy Loading
+
+
+#### Pre-Loading:
+
+It loads all necessary modules upfront when the application loads
+
+imports: [ RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }) ]
+
+
+#### Eager Loading
+
+It loads modules and components synchronously when the application starts or when a specific route is accessed.
+
+
+// direct put sub/other module components in main module
+
+```
+const routes: Routes = [
+  {
+    path: 'a',
+   component: ChildAComponent
+  },
+  {
+    path: 'b',
+    component: ChildBComponent
+  },
+  {
+    path: 'c',
+    component: ChildCComponent
+  }
+  ]
+
+```
+
+#### Lazy Loading
+
+It loads modules and components asynchronously, fetching them only when a route that requires them is accessed.
+
+
+```
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./a/a.module').then((m) => m.AModule),
+  },
+  {
+    path: 'b',
+    loadChildren: () => import('./b/b.module').then((m) => m.BModule),
+  },
+  {
+    path: 'c',
+    loadChildren: () => import('./c/c.module').then((m) => m.CModule),
+  }
+]
+
+```
+
+---
+
 #### What are the different Routing Strategies in Angular?
 
 ##### 1. Path Location Strategy:
