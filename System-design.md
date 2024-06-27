@@ -401,6 +401,32 @@ Advantages of using load balancer:
 
 
 
+# Load Balancing Algorithms:
+
+1. Round Robin (Static):
+
+Rotational fashion
+
+2. Weighted Round Robin (Static):
+
+It is similar to round robin when the servers are different capacities. (some node can have better resources, others might not have)
+
+3. IP Hash Algorithm (Static):
+
+The servers have almost equal capacity and the hash function(input is source IP) i used for random or unbiased distribution of requests to the nodes.
+
+
+4. Source IP Hash (Static): 
+
+Source IP hash combines the server and client's source and destination IP addresses to produce a hash key. The key can be used to determine the request distribution.
+
+
+5. Least connection algorithm (Dynamic): client requests are distributed to the application server with the least number of active connections at the time the client request is received.
+
+6. Least response time (Dynamic): 
+
+The request is distributed based on ther server which has the least response time.
+
 
 
 
