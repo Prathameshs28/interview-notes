@@ -430,6 +430,61 @@ The request is distributed based on ther server which has the least response tim
 
 
 
+# What is caching ?
+
+
+Types Of caching:
+
+1. In memory / local cache
+
+e.g Mem-cach
+
+2. Distributed / central cache
+
+e.g redis
+
+
+
+When to use?
+
+1. Read intensive
+2. static content
+
+
+1. Application server cache
+2. CDN (Content Delievery Network)
+
+
+
+
+Cache Eviction Strategies:
+
+
+It's meaning deleting cache
+
+1. LRU (Least recently used)
+2. MRU (Most recently used)
+3. LFU (Least frequently used)
+4. FIFO (First in first out)
+5. LIFO (Last in First out)
+6. RR (Random replacement)
+
+
+
+# File-Based Storage System File Based Database Management System (DBMS):
+
+
+A file-based storage system is a database management system where data is stored in the form of files.
+
+
+
+# Challenges of File-Based Storage System
+
+
+1. Data redundancy 
+
+update anamoly, delete anamoly leading to data inconsistency. 
+
 
 
 
