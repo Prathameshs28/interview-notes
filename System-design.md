@@ -489,6 +489,253 @@ update anamoly, delete anamoly leading to data inconsistency.
 
 
 
+# Can RDBMS scale horizontaly?
+
+
+What is RDBMS ?
+
+It performs data operations on relational database.
+
+Store, manage, query and retrieve data
+
+Data is represented in the form of tables.
+
+The relationship between the two tables is represented by foreign keys.
+
+
+
+Advantages:
+
+1. No data redundancy and inconsistency.
+
+2. A locking system is provided by RDBMS to prevent abnormalities from occurring.
+
+3. Built-in searching capabilites (no need of a separate programme as in FS)
+
+4. Ex-To maintain data integrity numberic columns won't have aplhabetic data
+
+(There is no process in the file system to check these constraints automatically)
+
+
+Dis advantages:
+
+1. Rigid schema
+2. High cost
+3. Scalability issues (Horizontal scaling/sharding is very dificult);
+
+
+# NoSQL
+
+It stands for "non-SQL" database or we can say that it is a non-relational database.
+
+
+
+NoSQl is the umbrella term comprising of four different tpyes of databases.
+
+Key value db: key value db (generally used for caching)
+
+e.g Redis
+
+Document db: Brings best of both RDBMS and NoSQL. It combines the relationship concept from RDBMS and dynamic schema and horizontal scaling from NoSQL databases.
+
+E.g. mongodb
+
+Columnar db: The columns are stored together instead of rows. Because of that the aggregation in such databases is rapid. It is widely used for Data analysis.
+
+when we query on subset of your data's columns.
+
+Because it just needs to read these specific columns, columnar DB conducts such queries quickly (while row-based DB would have to read the entire data).
+
+e.g Cassandra
+
+
+Graph db: Graph database represents and stores entites and relationships in the form of graph data structure. It is majorly used for social networks. 
+
+When your data is in the form of a graph like social networks we use this.
+
+e.g Neo4j
+
+
+
+# What is Polyglot Persistence?
+
+
+E-comm website
+
+shopping cart & session data -> key-value store
+
+completed order -> document store
+
+inventory and item price -> RDMS (LegacyDB)
+
+Customer social graph -> Graph store
+
+
+
+
+# Normalization and Denomralization
+
+Normalization : Putting data in multiple tables to avoid redundancy.
+
+
+Denomralization : Putting data in single table.
+
+It combines the data and organizes it in a single table. Denormalization is the process of adding redundant data to the normalized relational database to optimize it's perfomance.
+
+
+Benifits of Denormalization:
+
+1. faster data read operations
+2. management convenience
+3. high data availability
+4. reduces the number of network calls to fetch data from multiple places.
+
+Challenges of Denormalization
+
+1. Redundant data -> wastage of  memory
+2. It increases the complexity
+3. Data incosistency
+4. it will cause slow write operations since we will need to write multiple places due to redundancy.
+
+ 
+
+# Indexing in DB:
+
+
+ Indexing creates a lookup table with column and the pointer to the memory location of the  row, containing this column.
+
+
+Before indexing apply time complexity is O(n)
+
+After indexing applying time complexity is O(log n)
+
+
+In indexing it's creates separate memory location and store column and row reference with sorted manner with respect to original table
+
+
+B-trees data structure used for indexing
+
+
+B-tree data structure is used to store the indexing as it is a multilevel format of tree-based indexing, which has balanced binary search trees.
+
+
+
+Read intensive work apply indexing. 
+
+not recommended for insert, update and delete. (taking too much time)
+
+
+# Synchronous communication ( Blocking call )
+
+
+1. To achieve consistency
+2. Transaction
+
+
+High consistency (Industrial use cases):
+
+1. Stock market
+2. Bank payments
+3. Ticket booking
+4. Real time decision making
+
+
+# Asynchronous commnication(Non blocking calls)
+
+
+where is it necessary?
+
+1. Computation takes a lot of time
+2. scalability of application
+3. Avoid cascading failure
+
+
+
+# Message based Communication
+
+
+1. Client sends request in the form of message
+2. receives response in form of message
+3. it is async so client is not required to halt the process and wait for the process.
+
+
+
+Producer -> who sends request
+Consumer -> who receive req
+Agent -> channel where req communication (queue)
+
+* P2P  (peer to peer) Model:
+
+e-mail service
+
+* Publish subscribe model:
+
+news-later
+
+
+Message based communication tools:
+
+Kafka 
+RabbitMQ
+
+
+
+# Web server
+
+Tools or programs that helps keep the web application always up and running.
+
+
+Apache
+NgInx
+
+
+
+# Communication Protocols
+
+
+The rules, syntax, semantics and timing of commnunication and possible error recovery methods.
+
+
+These protocols can be implemented using hardware, software or a combination of both.
+
+
+Models:
+
+1. Push: 
+
+the clients opnes the connection with the server and keeps it always active.
+
+The server pushesh new events to the client. This method reduces the server load. 
+ 
+
+2. Pull/Polling:
+
+client requests and server respond
+
+issue: what if client sends 100 requests but get response to just 5 request
+
+3. Long polling: 
+
+Client requests and server keep in open until it gives response
+
+
+
+4. Socket:
+
+when we need continuous frequent connections
+
+two way connection channel
+
+
+5. Server sent events:
+
+
+client subscrbes to the server "stream" and server will send a message ("stream of events") to the client until the server or client closes the stream. 
+
+One way connection
+
+Long lived connection
+
 
 
 
