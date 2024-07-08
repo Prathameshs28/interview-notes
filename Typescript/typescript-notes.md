@@ -163,3 +163,56 @@ let seatAllotment:"aisle" | "middle" | "window";
 seatAllotment = "aisle";
 
 seatAllotment = "crew";   // got an error
+
+---
+
+# Tuple:
+
+
+A tuple is a typed array with a pre-defined length and types for each index.
+
+Tuples are great because they allow each element in the array to be a known type of value.
+
+
+let user:[string,number,boolean];
+
+user = ['abcd',10,true];
+
+user = [false,'abcd',10]; // got an error
+
+
+e.g with type
+
+type User =  [number,string];
+
+const newUser:User = [10,'abcd'];
+
+
+newUser[1] = 'ram';
+
+newUser.push(100);
+
+console.log(newUser)
+
+
+---
+
+# Enum
+
+
+enum SeatChoice{
+    AISEL,
+    MIDDLE,
+    WINDOW
+}
+
+const hcSeat = SeatChoice.MIDDLE;
+
+
+<!-- we can do as below to overcome too much js code creation -->
+
+const enum SeatChoice{
+    AISEL,
+    MIDDLE,
+    WINDOW
+}
