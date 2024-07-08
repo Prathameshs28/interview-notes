@@ -738,6 +738,354 @@ Long lived connection
 
 
 
+# Rest API 
+
+1. Client: Syste that initiates the commnication over the network.
+
+e.g mobile apps, browsers, web based consoles, laptops
+
+A web server can also act as a cient when requesting information to other server.
+
+
+2. Server: System that receives the request over the network.
+
+
+
+What is required for commnication to happen?
+
+1. Language independent
+2. Fast 
+3. Enable commnication over the network
+4. Light weighted
+
+
+
+REST: REpresentational State Transfer
+
+A technique/ style/ standard to provide those requirement.
+
+
+REST API -> URI and HTTP verb
+
+Get
+Post
+Put/patch
+Delete
+
+
+
+# Service Oriented Architecture (SOA):
+
+
+Service-Oriented Architecture (SOA) is a style of architecture that promotes loose coupling and granular application to make the components of the software reusable.
+
+
+
+* Advantages of Service-Oriented Architecture
+
+
+1. Selective scaling
+2. Different tech stacks
+3. Loose coupling
+4. Agile
+
+
+* Disadvantages of service-oriented architecture
+
+1. Higher latency
+2. Complex to secure
+3. Cascading failuer
+4. Complex understanding
+
+
+
+Microservices architecture is an evolved version of SOA that promotes software components to be loosely coupled. 
+
+It is the most granulated tpye of architecture design and every service is completely independent of the other.
+
+
+ 
+SOA VS Microservices:
+
+
+1. Services can share data storage
+
+        vs
+
+1. Each microservice has separate and independent data storage
+
+
+2. Less scalable architecture
+
+        vs
+
+2. Highly scalable architecture
+
+
+3. Deployment is time-consuming
+
+        vs
+
+3. Deployment is easy and less time-consuming
+
+
+4. Focused on maximize application service reusability
+
+        VS 
+
+4. More focused on decoupling
+
+
+
+# Tier architecture
+
+A web application can be designed according to the n-tier architecture where tiers are different layers of architecture.
+
+
+A Tier is a logical separation between different components of the application.
+
+ Tier architecture helps make modifications and updation of different components easy. It helps in assigning dedicated tasks and roles to each component
+
+
+
+1. 1 Tier
+
+FE + BE + DB ==> at same place
+
+2. 2 Tier
+
+FE & BE + DB ==> at different place
+
+3. 3 Tier
+
+FE & BE & DB ==> at differet places
+
+
+# Authorization vs Authentication 
+
+
+Authentication - who are you?
+
+Authorization : What can you do ?
+
+
+# JWT authentication
+# OAuth authentication
+
+
+# Forward proxy and reverse proxy:
+
+A proxy server is a hardware or a piece of software that is placed between a client and an application.
+
+
+The proxy server provides a gateway between the user and the internet.
+
+
+1. Forward Proxy:
+
+It hides the client.
+
+
+2. Reverse Proxy:
+
+It hides the server
+
+
+When to use reverse proxy?
+
+1. When I don't want to expose the server
+
+2. To make user feel there is only one server
+
+3. Provide load balancing for the server
+
+4. Allows administrators to swap the backend servers without distrubing the traffic
+
+5. Filter out some requests.
+
+
+
+# URL Shortner:
+
+
+1. Feature (length of url, domain)
+
+
+Funcational Requirements:
+
+i. Shorten
+ii. Redirection
+iii. Expiry
+
+Non-functional Requirements:
+
+i. Highly available
+ii. Low latency
+iii. URL's should not be predicatable
+
+
+2. Estimates (memory, CPU requirements)
+
+i. Esitmating the system capacity (RAM, Storage)
+
+ii. Decide Ready heavy or Write heavy
+
+100 : 1
+
+Read calls : Write calls
+
+
+Every month -> 1 million new URLs
+
+Every month -> 100 million redirections
+
+QPS (Queries per seconds):
+
+100,000,000 / 30 * 24 * 3600 = 50 qps
+
+
+Expiry will be 10 years
+
+Total Url's in 10 yrs = 1,000,000 * 12 * 10
+
+
+Assume 1 url size is 500 byte
+
+Total size = 1,000,000 * 12 * 10 * 500 = 60 GB
+
+
+Cashing:
+
+RAM -> 1 day TTL (Time to Leave)
+
+
+Per day queries:
+
+50 qps
+
+50 * 12 * 3600 = 5 million qpd
+
+
+25% of 5 million queries will be go for caching:
+
+
+25% of 5 million = 1.25 million
+
+1.25 million * 500 bytes = 1GB
+
+
+
+3. Design goal (CAP)
+
+i. Read intensive 
+ii. Highly available
+iii. Low latency
+iv. Security (not everybody can shorten url)
+
+
+4. HLD
+
+i. API's :
+
+shorten-url
+delete-url
+redirection
+
+signup
+login
+logout
+
+
+ii. Database - Mongodb
+iii. Algorithm - 
+
+long - short
+avoid collisions
+
+md5-#
+
+
+iv. Design
+
+
+5. Scaling
+
+
+# Dropbox system design 
+
+Functional Requirements:
+
+i. Upload
+ii. Download
+iii. Share
+
+
+Non-functional Requirements:
+
+i. Scalable 
+ii. Highly Available
+iii. Low latency
+iv. Optimize data transfer by minimizing bandwidth 
+v. ACID
+
+
+System Capacity:
+
+1 Billion users
+
+Average user stores 20GB
+Total space 20 Billion GB
+
+
+HLD:
+
+client -> 
+storage layer ->
+metadata storage layer -> synchronizer 
+
+
+
+* Clinet use case:
+
+i. upload the file
+
+ii. Download the file
+
+iii. Detect any changes
+
+iv. break the file into smaller changes thereby optimizing the file transfer (now only file changes has to be transferred instead of whole file)
+
+client -->
+
+chunker --> calculate hash of each chunk and upload to x
+
+watcher --> notifies chunker and indexer about changes
+
+internalDB --> stores hashes, URL & metadata
+
+Indexer --> takes hash & URL of chunks from chunker and save to internalDB
+
+
+Storage layer
+
+i. Highly distributed (HDFS,GFS)
+
+ii. Add caching
+
+
+Metadata storage layer:
+
+i. Permissions 
+
+ii. Devices list
+
+iii. Info of chunks (chunk_id,chunk_order,etc)
+
+iv. workspace folders
+
+v. versions
+
+vi. Hashesh
 
 
 
