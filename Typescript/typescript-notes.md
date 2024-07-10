@@ -843,12 +843,34 @@ vi. Polymorphism
 
 
 
+
 i. Objects:
 
 An Object is an instance of a class. An Object is a unique entity that contains properties and methods.
 
 
 ### Way to create objects:
+
+
+* Using class constructor:
+
+```
+class Employee{
+  name: string;
+  age: number;
+  constructor(n: string, a: number){
+    this.name= n;
+    this.age=a;
+  }
+}
+
+let emp = new Employee("John", 24);
+console.log(emp.name);
+console.log(emp.age);
+
+
+```
+
 
 * Using an Object Literal:
 
@@ -868,7 +890,7 @@ let person = {
 
 ```
 
-function person(first_name, last_name) {
+function person(first_name:string, last_name:string) {
     this.first_name = first_name;
     this.last_name = last_name;
 }
@@ -877,6 +899,7 @@ let person1 = new person('Mukul', 'Latiyan');
 let person2 = new person('Rahul', 'Avasthi');
 
 ```
+
 
 * Using Object.create() Method 
 
@@ -991,7 +1014,108 @@ Looking at the above example, we can outline the need for abstraction.
 
 
 
+### Inheritance:
 
-note for me: https://medium.com/@baruahd5/object-oriented-programming-oops-using-typescript-cdbffd7d0cf5
+It is the mechanism through which a class inherits or acquires properties of another class.
 
-create notes from above in ts
+The class from which properties are inherited is called the base/super/parent class and the class which acquires the property is called the derived/child/sub class.
+
+
+note: ‘super’ is a keyword used to call the parent constructor and its value.
+
+
+```
+
+
+// Base class
+class Manager{               
+  firstName : string;
+  lastName : string;
+  salary: number
+  email: string;
+
+  constructor(firstName: string, lastName: string, salary: number, email: string){
+    this.firstName= firstName;
+    this.lastName= lastName;
+    this.email= email;
+    this.salary= salary;
+  }
+}
+
+//Derived class
+class AreaManager extends Manager{ 
+  area: string;
+  constructor(firstName: string, lastName: string, salary: number, email: string, area: string){
+    super(firstName, lastName, salary, email);
+    this.area= area;
+  }
+}
+
+const manager = new Manager("John", "Doe", 25000, "john@xyz.com");  
+const areaManager = new AreaManager("Chun", "Li", 35000, "chun@xyz.com", "Los Angeles");
+
+console.log(`Manager's name: ${manager.firstName} ${manager.lastName}`);
+console.log(`Manager's salary: ${manager.salary}`);
+console.log(`Area Manager's name: ${areaManager.firstName} ${areaManager.lastName}`);
+console.log(`Area Manager's salary: ${areaManager.salary}`);
+console.log(`Area Manager's area of duty: ${areaManager.area}`);
+
+
+```
+
+* Types of Inheritance:
+
+
+- Single inheritance
+- Multilevel Inheritance
+- Multiple Inheritance
+- Hierarchical inheritance
+- Hybrid inheritance
+
+
+* Single Inheritance:
+
+When a single class inherits another single class
+
+Class A (Parent) ----> Class B (Child)
+
+Above eg. for sigle inheritance.
+
+
+
+* Multilevel Inheritance:
+
+When there is a single chain of inheritance then it is called as multilevel inheritance.
+
+Class A (Parent of B & C) ----> Class B (Child for A but Parent for C) ----> Class C (Child of A,B)
+
+
+
+* Multiple Inheritance:
+
+
+When a sub class inherits from more than one base class. Typescript does not support multiple inheritance.
+
+Class A (Parent) &  Class B (Parent) ----> Class C (Child of A & C)
+
+
+
+* Hierarchical Inheritance:
+
+When more than one sub classes are inherited from a single base class.
+
+```
+                Class A (Parent) 
+                      ||
+                      \/
+ Class B (Child of A)     Class C (Child of A)
+
+
+```
+
+* Hybrid Inheritance:
+
+
+
+
+
