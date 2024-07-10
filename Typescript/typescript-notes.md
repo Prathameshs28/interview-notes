@@ -964,55 +964,6 @@ let bike1 = new Vehicle('Hayabusa', 'Suzuki', '1340cc');
 ```
 
 
-iii. Abstraction
-
-
-Abstraction means displaying only essential information and hiding the details. Data abstraction refers to providing only essential information about the data to the outside world, hiding the background details or implementation. 
-
-
-Abstract Method: A type of method that is only declared and has no implementation or “function body” is known as the Abstract method. The abstract method must be declared inside the Abstract Class. Where its definition can be added in its subclass.
-
-Abstract Class: Abstract class is a type of class for which we can not create the instance and must contain at least one abstract method inside it.
-
-It reduces the duplication of the code.
-
-```
-
-abstract class Person{
-    username:string = '';
-    constructor(name:string){
-        this.username = name;
-    }
-
-    abstract info():void;
-}
-
-class User extends Person{
-    
-    constructor(name:string){
-        super(name);
-    }
-
-    info(){
-        return this.username;
-    }
-}
-
-let obj = new User('ram');
-
-console.log(obj.info())
-
-```
-
-
-Looking at the above example, we can outline the need for abstraction.
-
-- We cannot instantiate the Abstract class which means this class can only be used by inheritance.
-- The Abstract method definition can be given in its subclass.
-- Extracting the unnecessary information and keeping it inside the Abstraction class, means it ignores the implementation details and only shows the functionality to the user.
-- If we have to create a Person kind of object, we don’t have to bother about the properties of the Person. It's already given in abstract class, you just have to inherit in your class and use it.
-
-
 
 ### Inheritance:
 
@@ -1114,6 +1065,481 @@ When more than one sub classes are inherited from a single base class.
 ```
 
 * Hybrid Inheritance:
+
+
+Combination of more than one type of inheritance is called hybrid inheritance. To reduce complexity typescript does not support hybrid inheritance.
+
+
+
+```
+                Class A (Parent) 
+                     / \
+                    /   \
+ Class B (Child of A)     Class C (Child of A)
+              \             /
+               \           /
+             Class A (Child of B & C)
+
+```
+
+
+### Polymorphism:
+
+
+Poly signifies many and meaning of morph is shape, so polymorphism is basically executing a function in many ways. Polymorphism is another way after inheritance to achieve code reusability.
+
+
+
+*Polymorphism can be achieved by:
+
+- Method Overloading
+- Method Overriding
+
+
+
+1. Method Overloading
+
+
+In typescript we can have multiple function with the same name using different parameter types and return types. Unlike java, in typescript the number of parameters must be same. 
+
+Let’s understand this with two examples:
+
+
+```
+
+class Example{
+  
+
+// function declaration
+  
+  add(a:string, b:string): string;
+  add(a:number, b:number): number; 
+  
+  // method add is overloaded by providinng different parameter type and return type
+  
+  // function definition
+
+  add(a:any, b:any):any{
+    return a+b;
+  }  
+}
+
+let object= new Example();
+
+console.log(object.add("Hello ","John"));
+console.log(object.add(1,1));
+
+OP:
+
+"Hello John"
+2
+
+```
+
+we are trying to overload the function add by changing the parameter type and return type to number.
+
+
+
+Now let’s try providing different number of parameters:
+
+
+
+
+```
+
+class Example{
+  mult(a: number, b:number){
+    return a*b;
+  }
+  mult(a:number, b:number, c:number){
+    return a*b*c;
+  }
+}
+
+
+Output:
+
+Error: Duplicate function implementation
+
+```
+
+
+2. Method Overriding:
+
+
+
+To implement method overriding we must use inheritance and in the child class we provide different definition of functions that have been previously declared in the base class. 
+
+Let’s take an example:
+
+
+```
+
+class Laptop{
+  getOS(){
+    console.log("Operatiing System");
+  }
+}
+
+class Macbook extends Laptop{
+  getOS(){
+    console.log("MacOS");
+  }
+}
+
+class DellLaptop extends Laptop{
+  getOS(){
+    console.log("Windows");
+  }
+}
+
+let obj1 = new Laptop();
+let obj2 = new Macbook();
+let obj3 = new DellLaptop();
+
+obj1.getOS();
+obj2.getOS();
+obj3.getOS();
+
+
+Output:
+
+"Operatiing System"
+"MacOS"
+"Windows"
+
+```
+
+
+In the above example subclass Macbook and subclass DellLaptop both extends base class Laptop. Laptop has a method getOS(). We are overriding this method in both the subclasses by simply defining it uniquely in each time.
+
+
+
+
+### Abstraction
+
+
+Abstraction is simply hiding internal details and showing functionalities. It lets us focus on what an object does instead of how it does.
+
+
+It reduces the duplication of the code.
+
+
+Abstraction can be achieved by two ways:
+
+- Using abstract class
+- Using interface
+
+
+* Abstract Method: 
+
+- A type of method that is only declared and has no implementation or “function body” is known as the Abstract method. 
+
+- The abstract method must be declared inside the Abstract Class. Where its definition can be added in its subclass.
+
+
+
+* Abstract Class: 
+
+- We define an abstract class in typescript using an abstract keyword before the class keyword.
+
+- Instance of an abstract class cannot be created. But other classes can be derived from it and must contain at least one abstract method inside it.
+
+- The class which extends an abstract class must define all the abstract methods or properties.
+
+
+- The class which extends abstract class must call super in the constructor.
+
+
+```
+
+abstract class Children {
+    name: string;
+    
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    display(): void{
+        console.log(this.name);
+    }
+
+    abstract find(rollNo: number): Children;
+}
+
+class Student extends Children { 
+    rollNo: number;
+    
+    constructor(name: string, rollNo: number) { 
+        super(name); // must call super()
+        this.rollNo = rollNo;
+    }
+
+    find(rollNo:number): Children { 
+        let roll: number=101;
+        let name: string = "ABCD";
+        return new Student(name, roll);
+    }
+}
+
+let emp: Children = new Student("John", 100);
+emp.display(); 
+
+let emp2: Children = emp.find(101);
+emp2.display();
+
+```
+
+
+Looking at the above example, we can outline the need for abstraction.
+
+- We cannot instantiate the Abstract class which means this class can only be used by inheritance.
+
+- The Abstract method definition can be given in its subclass.
+
+- Extracting the unnecessary information and keeping it inside the Abstraction class, means it ignores the implementation details and only shows the functionality to the user.
+
+
+
+### Interface:
+
+
+- It is a syntax for a class.
+
+- It contains only the declaration of methods and properties. Classes implementing an interface must implement all its members and methods.
+
+- It cannot be instantiated.
+
+- It is used to type-check an object, whether it is followed by a specific structure or not .
+
+- Interfaces can be inherited from other interfaces by using extends key word.
+
+- Classes use implements keyword to implement an interface.
+
+
+```
+
+interface IUser{
+  name: string;
+  email: string;
+}
+
+interface IEmployee extends IUser{
+  employeeId: number;
+}
+
+class Employee implements IEmployee{
+  name: string;
+  email: string;
+  employeeId: number;
+  constructor(name: string, email: string, employeeId: number){
+    this.name= name;
+    this.email= email;
+    this.employeeId= employeeId;
+  }
+}
+
+```
+
+
+In the above example interface IEmployee extends interface IUser, shows interfaces can be inherited from other interfaces. Again class Employee implements interface IEmployee.
+
+
+
+### Access Modifiers
+
+
+
+To understand encapsulation we must first understand the access modifiers. There are three types of access modifiers in typescript:
+
+- Public
+- Private
+- Protected
+
+
+* Public
+
+By default all the members of a class are public in typescript that means we can access and modify them outside of the class. Let’s take an example:
+
+
+
+```
+class Employee{
+    name:string;
+    public age:number;
+
+    constructor(name:string,age:number){
+        this.name = name;
+        this.age = age;
+    }
+}
+
+let emp = new Employee("John",24);
+
+console.log(emp.name + "age is " + emp.age)
+
+emp.name = "abcd"
+emp.age = 30;
+
+console.log(emp.name + "age is " + emp.age)
+
+
+Output:
+
+John age is 24
+abcd age is 30
+
+```
+
+* Private:
+
+Private members are allowed to access or modify inside the class but not allowed outside of the class. Let’s take an example:
+
+
+
+```
+class Employee{
+    name:string;
+    private age:number;
+
+    constructor(name:string,age:number){
+        this.name = name;
+        this.age = age;
+    }
+
+    display(){
+        console.log(this.age)
+    }
+}
+
+let emp = new Employee("John",24);
+
+emp.display();
+
+// emp.age = 30; // not allowed
+
+
+```
+
+* Protected:
+
+Protected members can be accessed or modified within the class as well as within its child classes. For example:
+
+
+```
+class Employee{
+    name:string;
+    protected age:number;
+
+    constructor(name:string,age:number){
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Manager extends Employee{
+    designation:string;
+
+    construction(name:string,age:number,designation:string){
+        super(name,age);
+        this.designation = designation;
+    }
+
+    display(){
+        console.log(this.age);
+    }
+
+    modify(num:number){
+        this.age = num;
+    }
+}
+
+let emp = new Manager("John",24,"Manager");
+
+emp.display();
+emp.modify(40);
+emp.display();
+
+OP:
+
+24
+40
+
+```
+
+* Encapsulation:
+
+
+Wrapping codes and data into a single unit is called encapsulation. We can achieve it by using the access modifiers. For example we can create a fully encapsulated class by making all its members private.
+
+
+```
+
+
+
+class Employee {
+    private name!:string;
+    private salary!:number;
+    private empId!:number;
+
+    constructor(empName:string, empSalary:number, empId:number){
+        this.empId = empId;
+        this.salary = empSalary;
+        this.name = empName;
+    }
+
+    set setEmpSalary(sal:number){
+        this.salary = sal;
+    }
+
+    get getEmpSalary():number{
+        return this.salary;
+    }
+
+}
+
+let empObj = new Employee('ram',50000,101);
+
+console.log(empObj);
+
+empObj.setEmpSalary = 100000;
+let newSal = empObj.getEmpSalary;
+
+console.log(newSal);
+
+
+OP:
+
+ Employee: {
+  "empId": 101,
+  "salary": 50000,
+  "name": "ram"
+} 
+
+100000 
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
