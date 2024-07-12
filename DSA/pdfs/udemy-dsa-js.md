@@ -139,7 +139,126 @@ log 2 (value) = exponent ==> 2^exponent = value
 
 
 
-1 hr 10 min
+
+The logarithm of a number roughly measures the number of times you can divide that number by 2 before you get a value that's less than or equal to one.
+
+
+
+Certain searching algorithms have logarithmic time complexity.
+
+Efficient sorting algorithms involve logarithms.
+
+
+Recursion sometimes involves logarithmic space complexity.
+
+
+
+## OBjects
+
+Big O of objects
+
+
+Insertion - O(1)
+Removal - O(1)
+Searching - O(N)
+Access - O(1)
+
+
+when we don't need any ordering objects are an excellent choice.
+
+
+Big O of Object methods
+
+Object.keys - O(n)
+Object.values - O(n)
+Object.entries - O(n)
+hasOwnProperty - O(1)
+
+
+
+## Arrays
+
+
+Big O of Arrays
+
+Insertion - It depends 
+Removal - It depends
+Searching - O(n)
+Access - O(1)
+
+
+
+push - O(1)
+pop - O(1)
+shift - O(n)
+unshift - O(n)
+concat - O(n)
+slice - O(n)
+splice - O(n)
+sort - O(n * log n)
+forEach/map/filter/reduce - O(n)
+
+
+
+## Algorithms and Problem Solving Patterns:
+
+* What is an Algorithm?
+
+A process of set of steps to accomplish a certain task.
+
+
+
+## Problem solving stratergies:
+
+
+- Understand the problem:
+
+i. Can I restate the problem in my own words?
+
+ii. What are the inputs that go into the problem?
+
+iii. What are the outputs that should come from the solution to problem?
+
+iv. Can the outputs be determined from the inputs? In other words, do I have enough information to solve the problem? (you may not be able to answer this question until you set about solving the problem. That's okay it's still worth considering the question at this early stage).
+
+v. How should I label the important pieces of data that are a part of the problem?
+
+
+
+- Explore concrete examples:
+
+i. start with simple examples
+
+ii. Progress to more complex examples
+
+iii. Explore e.g with empty inpts
+
+iv. expore e.g with invalid inputs
+
+
+
+- Break it down:
+
+i. Explicitly write out the steps you need to take.
+
+
+- Solve/Simplify:
+
+i. Find the core difficulty in what you're trying to do
+
+ii. Temporarily ignore that difficulty 
+
+iii. Write a simplified solution
+
+iv. Then incorporate that difficulty back in.
+
+
+- Look back and refactor
+
+
+
+ 
+2.32 hr 
 
 
 
@@ -156,6 +275,445 @@ log 2 (value) = exponent ==> 2^exponent = value
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
