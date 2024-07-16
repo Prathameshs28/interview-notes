@@ -255,28 +255,327 @@ iv. Then incorporate that difficulty back in.
 
 - Look back and refactor
 
-
-
  
-2.32 hr 
+
+## Some patterns:
+
+1. Frequency counter
+2. Multiple pointers
+3. Sliding window
+4. Divide and conquer
+5. Dynamic programming
+6. Greedy algorithm
+7. Backtracking
 
 
 
+1. Frequency counter:
+
+This pattern uses objects or sets or collect values/frequencies of values.
+
+This can often avoid the need for nested loops or O(N^2) operations with arrays / strings.
+
+
+```
+
+function checkSquares(arr1,arr2){
+    if(arr1.length !== arr2.length){
+        return false;
+    }
+
+    for(let i=0;i<arr1.length;i++){
+        let currentIndex = arr2.indexOf(arr1[i] ** 2);
+        if(currentIndex === -1){
+          return false;
+        }
+            arr2.splice(currentIndex,1)
+    }
+        return true;
+
+}
+
+const result = checkSquares([1,2,3],[9,1,4]);
+
+console.log(result)
+
+```
+
+Here time complexity will be O(n^2)
+
+for loop * indexOf() 
+
+indexOf internally works on top of loop.
+
+
+```
+
+function checkSquares(arr1,arr2){
+    let arr1Obj = {};
+    let arr2Obj = {};
+    
+    for(let i of arr1){
+      arr1Obj[i] = ++arr1Obj[i] || 1;
+    }
+
+console.log(arr1Obj)
+
+    for(let i of arr2){
+      arr2Obj[i] = (arr2Obj[i] || 0) + 1;
+    }
+    
+   
+   for(let key in arr1Obj){
+     if(arr2Obj[key ** 2] !== arr1Obj[key]){
+        return false;
+     }
+     
+     if(!(key **2 in arr2Obj)){
+       return false;
+     }
+   }
+
+  return true;
+}
+
+const result = checkSquares([1,2,3,2],[9,4,1,4]);
+
+console.log(result)
+
+```
+
+
+using objects we can reduce time complexity to O(m+n)
 
 
 
+* Example for anagram:
+
+```
+function checkAnagram(str1,str2){
+  if(str1.length !== str2.length){
+    return false;
+  }
+  
+  let str1Obj = {};
+  let str2Obj = {};
+  
+  for(let i of str1){
+    str1Obj[i] = ++str1Obj[i] || 1;
+  }
+  
+
+  for(let i=0;i<str2.length;i++){
+    
+   if(!str1Obj[str2[i]]){
+     console.log(str1Obj)
+     return false;
+  }else{
+      str1Obj[str2[i]] -= 1;
+  }
+  }
+  
+
+  return true;
+  
+}
+
+console.log(checkAnagram('madam','amdma'))
+
+
+```
+
+
+* Multiple pointers
+
+Creating pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a cretain condition.
+
+
+Very efficient for solving problems with minimal space complexity as well.
+
+
+e.g 
+
+```
+sumZero([-3,-2,-1,0,1,2,3])
+
+function sumZero(arr){
+  
+  let start = arr[0];
+  let end = arr.length -1;
+  
+  while(start < end){
+    let sum = arr[start] + arr[end];
+    
+    if(sum === 0){
+      return [arr[start] , arr[end]]
+    }else if(sum > 0){
+      end--;
+    }else{
+      start++;
+    }
+    
+  }
+}
+
+
+```
+
+e.g Count unique values:
+
+```
+function findUniqueNumCount(arr){
+
+  let i = 0;j=1;
+  
+  while(j < arr.length){
+      if(arr[i] !== arr[j]){
+        i++;
+        arr[i] = arr[j];
+      }
+        j++;
+  }
+  
+  return i+1;
+  
+}  
+
+
+console.log(findUniqueNumCount([1,2,2,3,4,4,4,7,7,12,12,13]))
+
+output: 7 
+
+explaination: 1,2,3,4,7,12,13
+
+```
+
+
+### Sliding window
+
+
+This pattern involves creating a window which can either be an array or number from one position to another
+
+
+Depending on a certain condition the window either increases or closes (and a new window is created) very useful for keeping track of a subset of data in an array/string etc
+
+
+```
+Brut force soln:
+
+function maxSubarrSum(arr,num){
+  
+  let max = -Infinity;
+  
+  for(let i=0;i< arr.length - num + 1;i++){
+    let temp = 0;
+    
+    for(let j=0;j<num;j++){
+      temp += arr[i+j];
+    }
+    
+    if(max < temp){
+      max = temp;
+    }
+    
+  }
+  
+  return max;
+  
+}
+
+
+console.log(maxSubarrSum([2,6,9,2,1,8,5,6,10,3],3)) 
+
+output: 21
+
+```
 
 
 
+* using sliding window algorithm:
+
+
+```
+
+
+function maxSubarrSum(arr,num){
+  
+ if(num > arr.length) return null;
+ 
+ let maxSum = 0;
+ let tempSum = 0;
+ 
+ for(let i=0;i<num;i++){
+   maxSum += arr[i];
+ }
+ 
+ tempSum = maxSum;
+ 
+ for(let i= num; i<arr.length;i++){
+   
+   tempSum = tempSum - arr[i - num] + arr[i];
+   
+   maxSum = Math.max(tempSum,maxSum)
+   
+ }
+ 
+ return maxSum;
+  
+}
+
+
+console.log(maxSubarrSum([2,6,9,2,1,8,5,6,3],3))
+
+
+```
 
 
 
+###  Divide and conquer:
+
+This pattern involves dividing a data set into smaller chunks and then repeating a process with subset of data.
+
+this pattern can tremendously decrease time complexity.
 
 
 
+```
 
+function search(arr,val){
+  for(let i=0;i< arr.length;i++){
+    if(arr[i] === val) return i;
+  }
+}
 
+Lenear search
 
+Time comp: O(N)
+
+```
+
+```
+
+function search(array,val){
+  let min = 0;
+  let max = array.length -1;
+
+  while(min <= max){
+    let middle = Math.floor((min + max) / 2);
+
+  if(array[middle] < val){
+    min = middle + 1;
+  }else if(array[middle] > val){
+    max = middle -1;
+  }else{
+    return middle;
+  }
+  }
+
+  return -1;
+}
+
+TC: log(N) Binary search
+
+```
 
 
 
