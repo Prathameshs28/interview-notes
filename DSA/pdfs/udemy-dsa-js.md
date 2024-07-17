@@ -578,6 +578,256 @@ TC: log(N) Binary search
 ```
 
 
+### Recursion:
+
+
+* What is recursion?
+
+A process (a function in our case) that calls itself
+
+
+- JSON.parse / JSON.stringify
+
+- document.getElementById and DOM traversal algorithms
+
+- Object traversal
+
+
+Functions:
+
+In almost all programs languages, there is a built in data structure that manages what happens when functions are invoked.
+
+
+* The Call Stack
+
+
+- It's a stack data structure
+
+- Any time a function is invoked it is placed (pushed) on the top of the call stack
+
+- When javascript sees the return keyword or when the function ends, the compiler will remove (pop)
+
+
+
+
+- you're used to functions being pushed on the call stack and popped off when they are done
+
+- When we write recursive functions, we keep pushing new functions onto the call stack
+
+
+
+* Helper method Recursion
+
+
+```
+
+function findOddNumbers(arr){
+  
+  let result = [];
+  
+  function helper(inputArr){
+    
+    let len = inputArr.length;
+    if(len === 0) return;
+    
+    if(inputArr[0] % 2 !== 0){
+      result.push(inputArr[0]);
+    }
+    
+    return helper(inputArr.slice(1))
+  }
+  
+  
+  helper(arr);
+  
+  return result;
+  
+}
+
+
+let result = findOddNumbers([1,2,3,4,5,6,7,8,9,11]);
+
+console.log(result)
+
+
+```
+
+
+* Pured recursion:
+
+
+```
+
+function findOddNumbers(arr){
+  
+  let result = [];
+  
+
+    let len = arr.length;
+    if(len === 0) return result;
+    
+    if(arr[0] % 2 !== 0){
+      result.push(arr[0]);
+    }
+   
+    result = result.concat(findOddNumbers(arr.slice(1)));
+   
+  return result;
+  
+}
+
+
+let result = findOddNumbers([1,2,3,4,5,6,7,8,9,11]);
+
+console.log(result)
+
+```
+
+- For arrays, use methods like slice, the spread operator and concat that make copies of arryas so you do not mutate them.
+
+
+- Remember that strings are immutable so you will need to use methods like slice, substr or substring to make copies of strings.
+
+- To make copies of objects use Object.assign or the spread operator.
+
+
+
+### Searching algorithms:
+
+
+* JS Search
+
+
+There are many different search methods on arrays in js:
+
+- indexOf
+- includes
+- find
+- findIndex
+
+
+## Linear Search
+
+
+```
+
+function linearSearch(arr,item){
+    
+    for(let i=0;i<arr.length;i++){
+      if(arr[i] === item) return i;
+    }
+    
+    return -1;
+}
+
+let result= linearSearch([10,40,70,10,90,20,80], 900);
+
+console.log(result);
+
+```
+
+Big O for linear search
+
+Best- O(1)
+Average- O(N)
+Worst- O(N)
+
+
+
+## Binary Search:
+
+- Binary search only works on sorted array.
+
+
+* Divide and Conquer:
+
+
+
+
+```
+
+
+function binarySearch(arr,item){
+  
+  let start = 0;
+  let end = arr.length -1 ;
+  
+  while(start <= end){
+    let middle = Math.floor((start + end ) /2);
+    
+    if(arr[middle] < item){
+        start = middle + 1;
+    }else if(arr[middle] > item){
+      end = middle - 1;
+    }else{
+      return middle;
+    }
+    
+  }
+  
+  return -1;   
+}
+
+
+
+let result= binarySearch([10,20,30,40,50,60,70,80], 40);
+
+console.log(result)
+
+```
+
+
+Big O for Binary Search
+
+Wrost and Average case: O(log n)
+
+Best case: O(1)
+
+
+
+#### Naive String Search
+
+
+
+```
+
+function naiveSearch(long, short){
+  let count = 0;
+
+  for(let i=0;i< long.length;i++){
+    for(let j=0;j< short.length;j++){
+      if(short[j] !== long[i+j]){
+        break;
+      }
+
+      if(j === short.length - 1){
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+let result = naiveSearch("lorie loled","lol");
+
+console.log(result);
+
+```
+
+## Sorting Algorithms:
+
+
+Sorting is the process of rearranging the items in a collection (e.g an array) so that the items are in some kind of order.
+
+In JS for sort, Firefox uses merge sort, while Chrome and Safari use Tim-sort.
+
+Tim Sort is a hybrid sorting algorithm derived from merge sort and insertion sort.
+
+
+* Bubble sort:
+
+
+A sorting algorithm where the largest values bubble up to the top.
 
 
 
@@ -585,29 +835,7 @@ TC: log(N) Binary search
 
 
 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
+6.22 hr 
 
 
 
