@@ -943,7 +943,7 @@ Big O of Sorting algorithms:
 
 Best: O(N)
 Average: O(N^2)
-Wrost: O(N^2)
+Worst: O(N^2)
 
 Space: O(1)
 
@@ -952,7 +952,7 @@ Space: O(1)
 
 Best: O(N)
 Average: O(N^2)
-Wrost:O(N^2)
+Worst:O(N^2)
 
 Space: O(1)
 
@@ -960,7 +960,7 @@ Space: O(1)
 
 Best: O(N^2)
 Average: O(N^2)
-Wrost:O(N^2)
+Worst:O(N^2)
 
 Space:O(1)
 
@@ -1027,7 +1027,7 @@ function merge(arr1,arr2){
     while(i<arr1.length && j<arr2.length){
       
       if(arr1[i] < arr2[j]){
-        
+        result.push(arr1[i]);
         i++;
       }else{
         result.push(arr2[j]);
@@ -1061,15 +1061,21 @@ function merge(arr1,arr2){
 
 ```
 
+Big O of merge Sort:
+
+Best: O(n log n)
+Average: O(n log n)
+Worst: O(n log n)
+
+Space complexity: O(n)
 
 
 
+### Quick Sort:
 
 
 
-
-
-
+8 h 
 
 
 
