@@ -830,37 +830,242 @@ Tim Sort is a hybrid sorting algorithm derived from merge sort and insertion sor
 A sorting algorithm where the largest values bubble up to the top.
 
 
+```
+function bubbleSort(arr){
+    
+    let noSwaps = true;
+    
+    for(let i=0;i<arr.length;i++){
+        for(let j=0;j<arr.length-1;j++){
+          
+          if(arr[j] > arr[j+1]){
+            [arr[j],arr[j+1]] = [arr[j+1],arr[j]];
+            noSwaps = false;
+          }
+         
+        }
+      
+        if(noSwaps) break;
+    }
+    
+    return arr;
+}
+
+
+let result = bubbleSort([92,42, 67, 15]);
+
+
+console.log(result)
+
+
+```
+
+## Selection Sort:
+
+Similar to bubble sort but instead of first placing large value into sort position it places small values into sorted position.
+
+
+```
+function selectionSort(arr){
+  
+  for(let i=0;i<arr.length;i++){
+    let min = i;
+    
+    for(let j= i+1;j<arr.length;j++){
+      if(arr[j] < arr[min]){
+        min = j;
+      }
+    }
+
+    if(i !== min){
+      [ arr[min],arr[i] ] = [ arr[i], arr[min]  ]
+    }
+  }
+  
+  return arr;
+}
+
+let result  = selectionSort([32,99,49,12,4,60])
+console.log(result)
+
+
+```
+
+
+### Insertion Sort:
+
+
+Builds up the sort by gradually creating a larger left half which is always sorted.
+
+
+```
+
+  function insertionSort(arr){
+    for(let i=1;i<arr.length;i++){
+      
+      let currentValue = arr[i];
+      let j ;
+      for(j= i-1; j>=0 && arr[j] > currentValue;j--){
+        arr[j+1] = arr[j];
+      }
+      
+      arr[j+1] = currentValue;
+      //console.log(arr);
+    }
+    
+    return arr;
+  }
+  
+  let result = insertionSort([4, 99, 49, 12, 32, 60]);
+  
+  console.log('result: ',result);
 
 
 
+explaination:
+
+[4,99,49,12,32,60]
+
+[4,49,99,12,32,60] - 1
+
+[4,32,49,99,12,60] - 2
+
+[4,12,32,49,99,60] - 3
+
+[4,12,32,49,60,99] - 4
+
+```
+
+Big O of Sorting algorithms:
 
 
-6.22 hr 
+* Bubble Sort: 
+
+Best: O(N)
+Average: O(N^2)
+Wrost: O(N^2)
+
+Space: O(1)
+
+
+* Insertion Sort:
+
+Best: O(N)
+Average: O(N^2)
+Wrost:O(N^2)
+
+Space: O(1)
+
+* Selection Sort:
+
+Best: O(N^2)
+Average: O(N^2)
+Wrost:O(N^2)
+
+Space:O(1)
+
+
+Bubble and Insertion sort best for partially sorted data.
 
 
 
+### Advance Sorting Algorithm
+
+
+```
+
+create random 10k numbers array
+
+let data = Array.apply(null, {length:10000}).map(Function.call,Math.random);
+
+
+```
+
+
+- There is a family of sorting algorithms that can improve time complexity from O(N^2) to O(N log N)
+
+- There's tradeoff between efficiency and simplicity
+
+- The more efficient algorithms are much less simple, and generally take longer to understand.
 
 
 
+### Merge Sort
 
 
 
+```
+
+[ 8,3,5,4,7,6,1,2 ]
+
+[ 8,3,5,4 ]  [ 7,6,1,2 ]
+
+[ 8,3 ] [ 5,4 ]  [ 7,6 ] [ 1,2 ]
+
+[8] [3] [5] [4] [7] [6] [1] [2]
+
+Compare and sort again
+
+[3,8] [4,5] [6,7] [1,2]
+
+[3,4,5,8] [1,2,6,7]
+
+[1,2,3,4,5,6,7,8]
+
+```
 
 
+```
+
+merge two array with sorting:
 
 
+function merge(arr1,arr2){
+    let i=0,j=0;
+    let result = [];
+    
+    while(i<arr1.length && j<arr2.length){
+      
+      if(arr1[i] < arr2[j]){
+        
+        i++;
+      }else{
+        result.push(arr2[j]);
+        j++;
+       
+      }
+    }
+    
+    
+    while(i < arr1.length){
+       result.push(arr1[i]);
+       i++;
+    }
+    
+    
+    while(j < arr2.length){
+      
+       result.push(arr2[j]);
+       j++;
+    }
+    
+    return result
+    
+}
 
 
-
-
-
-
-
-
-
-
-
+ let result = merge([100],[1,3,4,5,6,7,8,9]);
  
+ console.log(result);
+
+
+```
+
+
+
+
+
+
 
 
 
