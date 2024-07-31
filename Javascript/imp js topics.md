@@ -13,19 +13,19 @@ most imp js topics for interview:
 
 
 
-objects (object referencing, copying, cloning)
-this keyword
-functions (arrow functions, function IIFE)
-var, let const
-event loop and execution context
-event bubbling, capturing, delegation
-prototype inheritance
-callbacks
-currying
-scopes
-micro/ macro tasks
-setTimeout vs setInterval
-js engine and execution context
-HOF
-async and defer
-math and Date obj
+- objects (object referencing, copying, cloning)
+- this keyword
+- functions (arrow functions, function IIFE)
+- var, let const
+- event loop and execution context
+- event bubbling, capturing, delegation
+- prototype inheritance
+- callbacks
+- currying
+- scopes
+- micro/ macro tasks
+- setTimeout vs setInterval
+- js engine and execution context
+- HOF
+- async and defer
+- math and Date obj
