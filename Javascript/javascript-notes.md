@@ -194,3 +194,137 @@ JS modules
 
 
 // -------------------------------
+
+console.log('1...');
+
+for(var i=0;i<2;i++){
+    setTimeout(console.log(i),100);
+}
+
+console.log('2...');
+
+// -----------------
+
+{
+    var a = 10;
+    console.log(a);
+}
+
+var a = 20;
+console.log(a);
+
+// -----------------
+
+
+function abc(){
+    {
+      var a = 10;
+      console.log(a)
+    }
+    
+    {
+      let a = 200;
+      console.log(a)
+    }
+    
+    console.log(a)
+  }
+  
+  abc();
+
+// -----------------
+
+
+function foo(a,b){
+    console.log(arguments[1]);
+}
+
+foo(3)
+
+
+
+// custome directive for change background color 
+// of cell basis on age condition
+
+
+
+const compose = (f,g) => (x) => f(g(x));
+
+const g = (num) => num + 1;
+const f = (num) => num * 2;
+
+const h = compose(f,g);
+
+console.log(h(20));
+
+
+//  ----------------
+// js visualizer https://www.jsv9000.app/
+
+
+console.log(1)
+
+setTimeout(()=> console.log(2),0)
+Promise.resolve().then(()=>console.log(3));
+setTimeout(()=> console.log(4),1);
+
+console.log(5)
+
+
+1 
+5
+3
+2
+4
+
+
+//  ----------------
+
+
+
+
+
+/*
+
+Array:
+
+1. Reverse an Array
+2. Find the maximum Element
+3. Remove duplicates
+4. Array sumRotate an Array
+5. Merge two sorted arrays
+6. Array intersection
+7. Subarray with given sum
+8. Two sum
+9. Move Zeros to the end
+
+Objects:
+
+1. write a function to extract keys and
+values from an object and return them as separate arrays
+
+2. Implement a function to deeply compare two objects 
+and determine if they are equal 
+
+3. write a function to transform an object by adding a prefix to all its keys
+
+4. implement a function to filter an object based on a given condition
+
+5. write a function to flatten a nested object into single-level object
+
+6. Implement a funciton to merge two objects, with second 
+object's values precendence in case of key conflicts
+
+7. Write a function to convert an objects into a JSON string
+
+8. Implement a function to create a deep copy of object
+
+9. Write a funciton to check if a specific key exists in an object
+
+10. write a function to convert an array of objects into 
+an object, using a specified property as 
+the key.
+
+*/
+
+
