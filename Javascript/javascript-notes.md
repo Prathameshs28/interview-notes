@@ -1,15 +1,20 @@
 # Javascript Notes:
 
 
- call :
+- call :
 Call is a function that helps to change the context of the invoking function.  it helps to replace the value of this inside a function with whatever value you want.
-Apply:
+
+- Apply:
 Apply is very similar to the call function. The only difference is that in apply you can pass an array as an argument list
-Bind:
+
+- Bind:
 Bind is a function that helps you create another function that you can execute later with the new context of this that is provided.
 The call() method takes arguments separately.
 The apply() method takes arguments as an array
+
 bind() method, an object can borrow a method from another object.
+
+```
 const person1 = {
         fname: "Rahul",
         lname: "patil",
@@ -40,10 +45,20 @@ const person1 = {
       };
       let user = createPerson.fullname.bind(member);
       console.log(user());
+
+```
+
 *** Singleton design pattern :
- The singleton is one of the most well-known design patterns. There are times when you need to have only one instance of a class and no more than that.
-Singletons are used to create an instance of a class if it does not exist or else return the reference of the existing one. This means that singletons are created exactly once during the runtime of the application in the global scope.
+ 
+The singleton is one of the most well-known design patterns. There are times when you need to have only one instance of a class and no more than that.
+
+Singletons are used to create an instance of a class if it does not exist or else return the reference of the existing one. This means that 
+
+singletons are created exactly once during the runtime of the application in the global scope.
+
 Several other patterns, such as, Factory, Prototype, and Façade are frequently implemented as Singletons when only one instance is needed.
+
+```
 var myInstance = {
   method1: function () {
     // ...
@@ -73,7 +88,11 @@ var myInstance = {
       let suzuki = new Suzuki("suzuki 1 ", 10000, "red");
       console.log(suzuki.getColour());
       console.log(suzuki.getDetails());
+```
+
  Abstraction:
+
+```
 // abstraction
       function person(name, age) {
         let Uname = name;
@@ -90,6 +109,88 @@ var myInstance = {
       console.log(user1.public()); // ram 10
  Various ways to create object in JS (object literal (normal way), new Object(),  Object.create(), constructor())
 
+```
 
 
- **************************************************************
+function resolveAfterTwoSec(){
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            resolve('resolved')
+        },2000);
+    })
+}
+
+async function asyncCall(){
+    console.log('calling');
+    const result = await resolveAfterTwoSec();
+    console.log(result);
+}
+
+
+// -------------------------------
+
+console.log(foo());
+
+var foo = function(){
+    return 9;
+}
+
+// -------------------------------
+
+
+ const add = {
+    city:"Delhi",
+    street: "abc"
+ }
+
+ console.log(add.pincode)
+
+
+// -------------------------------
+
+
+
+humanize('contact_details_are_not_found')
+
+
+function humanize(str){
+  
+  let st = str.split('_');
+  let tempStr = '';
+ st.map((x)=> x.charAt(0).toUpperCase()+x.substr(1)).forEach((val)=> tempStr+= val + ' ');
+ console.log(tempStr)
+  
+}
+
+
+// -------------------------------
+
+
+// console.log(num)
+
+var num = 8;
+var num = 10;
+
+console.log(num)
+
+
+
+// -------------------------------
+
+
+what is _ _ prototype
+pollyfills
+Weakmap is es6
+
+how to create global variable in js
+
+How to call function which is in IIFE?
+
+on call on some condition
+
+flatMap use
+
+JS modules
+
+
+// -------------------------------
