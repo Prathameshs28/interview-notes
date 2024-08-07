@@ -328,3 +328,232 @@ the key.
 */
 
 
+
+
+/* 
+
+
+Global execution context
+
+2 phases there 
+
+1st is Memory phase
+2nd is Code phase
+
+In memory phase code checks any 
+variables from top to bottom 
+and store variables without any 
+value (e.g undefined).
+
+Note: variable initialization not 
+a part of memory phase
+
+In Code phase code run line by line
+
+and value initialize to variables as 
+per code execution line by line.
+
+
+*/
+
+
+
+/* 
+
+myFun();
+
+var myFun = function(){
+    console.log("First");
+}
+
+myFun();
+
+function myFun(){
+    console.log('Second');
+}
+
+myFun(); 
+
+OP:
+
+Second
+First
+First
+
+*/
+
+
+
+
+/* var variable = 10;
+(()=>{
+    console.log(variable);
+
+     variable = 20;
+    
+    console.log(variable)
+
+})();
+
+console.log(variable);
+
+var variable = 30;
+
+
+OP:
+
+10 
+20
+20
+
+if in function there is somthing 
+
+var variable = 20;
+
+then we get op as
+
+undefined 
+20
+10
+
+*/
+
+
+/*
+ variable = 10;
+
+(()=>{
+    foo = 100;
+    console.log(variable);
+    var foo = 100;
+    variable = 20;
+  
+    console.log(variable);
+})();
+
+console.log(foo);
+console.log(variable);
+var variable = 30;
+
+op:
+
+10
+20
+error foo not defined
+
+ */
+
+
+
+/* 
+
+console.log(a)
+console.log(b)
+var a = b = 5; 
+
+*/
+
+
+/* 
+
+console.log(1 < 2 < 3) // true
+console.log(3 > 2 > 1) // false 
+
+*/
+
+
+
+/* 
+
+const foo = ()=> {
+    console.log(this.age);
+}
+
+foo.call({age:'john'})
+
+*/
+
+
+
+/* const foo = function(){
+    console.log(this.age);
+
+    const bar = ()=>{
+        console.log(this.age)
+    }
+    bar()
+}
+
+foo.call({age:'john'}) */
+
+
+
+// make id only freeze not others
+
+/* let obj = {
+    id:1,
+    name:'ram'
+  }
+  
+  Object.freeze(obj);
+  
+  obj.id = 100;
+  obj.name = 'abcd';
+  
+  console.log(obj)
+
+
+
+  Answer:
+
+  let obj = {
+    id:1,
+    name:'ram',
+    age:20
+  }
+  
+  // Object.freeze(obj);
+  
+
+  // for single property
+
+  Object.defineProperty(obj,'id',{
+    writable:false
+  })
+
+  // for multiple
+  Object.defineProperties(obj,{
+   id: {
+    writable:false
+  },
+  age:{
+    writable:false
+  }
+  })
+  
+  obj.id = 100;
+  obj.name = 'abcd';
+  obj.age = 300;
+  
+  console.log(obj) */
+
+  
+
+/* 
+
+if we give these properites then 
+
+backdrop-filter: blur(4px);
+
+transform
+perspective
+click path property
+
+
+position:fixed element will be related to its parent
+it will not be related to viewport
+
+*/ 
+
+
+
