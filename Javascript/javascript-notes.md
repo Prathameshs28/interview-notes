@@ -557,3 +557,146 @@ it will not be related to viewport
 
 
 
+/* 
+
+defer 
+async  attribute for load script file
+
+
+
+replaced inline elements
+non replaced inline elements
+
+images are inline then how we 
+can give width and height to it?
+
+
+for replaced inline elements 
+are comes from external source 
+so we can give height and width
+
+e.g <img>
+
+
+non replaced inline elements
+are by default inline so we can't 
+give height and width
+
+e.g span, a, b, i 
+
+
+inline elements don't follow
+box model
+
+ */
+
+
+
+
+/* class A{
+  constructor(){
+    this.foo = 30;
+  }
+
+  bar(){
+    console.log(this.foo)
+  }
+}
+
+let obj = new A();
+
+console.log(typeof A)
+ */
+
+
+
+/* 
+function fn(){
+  this.foo = 10;
+}
+
+fn.prototype.bar = function(){
+  console.log(this.foo)
+}
+
+let obj = new fn();
+console.log(obj.foo)
+obj.bar()
+ */
+
+
+/* let resPromise;
+let rejPromise;
+const p = new Promise((resolve,reject)=>{
+  resPromise = resolve;
+});
+
+
+function check(){
+  console.log(p)
+}
+
+function resolvePromise(){
+  
+  if(resPromise){
+    resPromise();
+  }
+
+  p.then(()=>{
+    console.log('promise resolved')
+  }).catch((err)=>console.log('err'));
+}
+ */
+
+
+{/* <button onclick="check()">Check</button> */}
+{/* <button id="btn" >Click</button> */}
+
+/* let resPromise;
+let rejPromise;
+const p = new Promise((resolve,reject)=>{
+  document.getElementById('btn').addEventListener('click',()=>{
+    resolve();
+  })
+});
+
+p.then(()=>{
+  console.log('promise resolved')
+}).catch((err)=>console.log('err'));
+
+
+function check(){
+  console.log(p)
+} */
+
+//  javascript file module
+//  type = "module"
+
+ 
+
+
+/* var a1 = 10;
+{
+  var a2 = 20;
+}
+
+function fn(){
+  var a3 = 100;
+}
+
+fn();
+
+if(true){
+  var a4 = 200;
+}
+ */
+
+
+/* 
+<span>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, laudantium dolorum soluta ullam repudiandae, eaque magnam corrupti esse illo, atque aut. Necessitatibus, animi obcaecati cum mollitia 
+</span>
+<button onclick="check()">Check</button>
+<button id="btn" >Click</button>
+
+<script src="./app.js" type="module"></script> */
