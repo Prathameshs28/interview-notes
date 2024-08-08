@@ -37,12 +37,11 @@ const cloned = JSON.parse(JSON.stringify(original));
    They won't appear in the cloned object.
 
 
-   ```
+ ```
   const original = { a: undefined, b: Symbol('sym') };
   const cloned = JSON.parse(JSON.stringify(original));
   console.log(cloned); // { }
-
-   ```
+ ```
 
 3. Date Objects:
 
