@@ -102,11 +102,11 @@ display:inline-block ==> using this we can apply height, width, margin to elemen
 
 
 
-* Replaced inline elements: <img> tag is repaced inline element because we can give height and width to it. They are external objects whose representation is independent of the CSS formatting model.
+* Replaced inline elements: img tag is repaced inline element because we can give height and width to it. They are external objects whose representation is independent of the CSS formatting model.
 
-e.g <img> , INPUT, TEXTAREA, SELECT, and OBJECT, <video> , <iframe> , <embed> , <fencedframe> , 
+e.g img , INPUT, TEXTAREA, SELECT, and OBJECT, video , iframe , embed , fencedframe
 
-* Non-Replaced inline elements : <a>, <b>, <span>, <strong> these kind of inline elements are non-replaced elements. we cannot apply height and width to these elements. 
+* Non-Replaced inline elements : a, b, span, strong these kind of inline elements are non-replaced elements. we cannot apply height and width to these elements. 
 
 
 
