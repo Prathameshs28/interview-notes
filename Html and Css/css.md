@@ -110,7 +110,25 @@ e.g img , INPUT, TEXTAREA, SELECT, and OBJECT, video , iframe , embed , fencedfr
 
 
 
+#### Percentage (%) :
 
+while using % for 
+width - it will take parent width percentage
+padding - same like width (parent width)
+margin -  same like width (parent width)
+
+
+border - (invalid) will not work with %
+height - will not work with %
+
+and parent should be in px if not then it's parent
+should be in px 
+
+
+font-size related to parent font-size (px)
+means it will relatively increase or 
+decrease as per parent font-size while 
+we are using %
 
 
 
