@@ -88,6 +88,30 @@ button{
 ```
 
 
+### Inline elements:
+
+Width - when we apply width then it will take only content width extra width will not apply.
+
+heigth - height not apply on content 
+
+margin: left and right side margin apply but top and bottom not apply
+
+padding: padding apply but if there is other elements whether it's block level or inline it will overlap on the other elements.
+
+display:inline-block ==> using this we can apply height, width, margin to element and if we take new inline elements next to this element it will show, if there is space avaialable. 
+
+
+
+* Replaced inline elements: <img> tag is repaced inline element because we can give height and width to it. They are external objects whose representation is independent of the CSS formatting model.
+
+e.g <img> , INPUT, TEXTAREA, SELECT, and OBJECT, <video> , <iframe> , <embed> , <fencedframe> , 
+
+* Non-Replaced inline elements : <a>, <b>, <span>, <strong> these kind of inline elements are non-replaced elements. we cannot apply height and width to these elements. 
+
+
+
+
+
 
 
 
