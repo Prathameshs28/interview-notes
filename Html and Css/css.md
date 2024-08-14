@@ -132,5 +132,28 @@ we are using %
 
 
 
+---
+
+```
+ em rem
+
+    position: fixed, relative, absolute, sticky
+
+    opacity
+
+    transform:scale(2)
+
+    transform-origin:100% 100%;
+
+    transform:rorate(30deg)
+
+    
+    line-height: 200px;
+    line-height: normal;
+    vertical-align: middle; 
+
+```
+
+
 
 
