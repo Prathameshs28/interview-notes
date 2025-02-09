@@ -3,17 +3,23 @@
 **HTML**
 
 1. What is !DOCTYPE?
+  
 2. <!DOCTYPE html>
-3. html vs HTML5
-4. What is the use of the target attribute in the <link> tag?
-5. e.g. <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a>
-6. cellpadding vs cellspacing
-7. explain layout of html
-8. HTML5 API
-9. How to select multiple data from drop-down
-10. what are html selectors
 
+3. html vs HTML5 - <audio>, <video>, vector graphics (SVG),  Figure and Figcaption for image,  <progress>,  localStorage and sessionStorage, WebSockets
 
+4. What is the use of the target attribute in the <link> tag? - how the linked document should be displayed. target=_blank / _self / _parent (frame) / _top
+ e.g. <a href="https://www.w3schools.com" target="_blank">Visit W3Schools</a>
+
+5. cellpadding (Inner Cell Spacing) vs cellspacing (Outer Cell Spacing)
+
+6. explain layout of html html -> head -> body
+
+7. HTML5 API - Geolocation API, Web Storage API, Canvas API, WebSockets API, Fetch API,  Web Workers API,  Drag and Drop API, Notifications API, 
+
+8. How to select multiple data from drop-down - user multiple attribute
+
+9. what are html selectors: h1 -> element, # -> id, . -> class, input[type="text"] -> attribute, * -> universal, : -> Pseudo-class, p::first-letter Pseudo-element.
 
 ---
 
