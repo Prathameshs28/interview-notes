@@ -3,7 +3,7 @@
 NgRx is a reactive state management library for Angular applications that leverages the power of RxJS to manage the state and interactions in the application. It is often used to handle complex state management in larger Angular applications by using a store that provides a single source of truth for the app's state, and actions and reducers to modify it.
 
 ---
-![Image description](/interview-notes/assets/ngrx-flow.png)
+![Image description](/assets/ngrx-flow.png)
 
 ---
 
