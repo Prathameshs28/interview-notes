@@ -2,7 +2,7 @@
 
 Project Dev life cycle:
 
-![Image description](assets/IMG_20240708_141700.jpg)
+![Image description](assets/soft-dev-cycle-to-prod.jpg)
 
 
 1. Requirement gathering and planning:

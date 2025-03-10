@@ -1,92 +1,134 @@
+# Short details of Angular version new features: 
+
+```js
+
 Angular 2
 
 1. rewrite in typescript
 2. component based
 3. es 6 and typescript support
 
+```
+--- 
 
+```js
 Angular 3
 
 angular router was already in v3 and releasing angular 3 with router 4 will create confusion
 
 To avoid this confusion they decided to skip the version 3 
 
+```
+--- 
 
+```js
 Angular 4
 
 1. changes in core library
 2. else bloack in *ngIf introduced
 3. AOT improvement
 
+```
+---
 
+```js
 Angular 5
 
 1. Build optimizer
 2. ng Universal - SSR
 3. new router events
 
+```
+---
 
+```js
 Angular 6
 
 1. ng-template
 2. providers array
 3. angular elements
+```
+---
 
-
+```js
 Angular 7
 
 1. CLI changes
 2. core framework changes
+```
+---
 
-
+```js
 Angular 8
 
 1. added support for saas
 2. forms updates
 3. performance improvement
 
+```
+---
 
+```js
 Angular 9
 
 1. Ivy as default compiler
 2. new options for ProvidedIn 
 3. reliable ng-update
 
+```
+---
 
+```js
 Angular 10
 
 1. Language services
 2. compiler update
 3. localization
 
+```
+---
+
+```js
 Angular 11
 
 1. updated HMR support
 2. improved ngcc compiler
 3. webpack 5 support
 
+```
+---
 
+```js
 Angular 12
 
 1. Deprecating support for IE 11
 2.improved logging and reporting
 3. HTTP improvement
 
+```
+---
 
+```js
 Angular 13
 
 1. View engine no longer available
 2. Improvements in CLI
 3. Component API updates
 
+```
+---
 
+```js
 Angular 14
 
 1. Optimized build process
 2. Angular elements v3
 3. streamlined i18n workflow
 
+```
+---
 
+```js
 Angular 15
 
 1. Standalone API
@@ -94,7 +136,10 @@ Angular 15
 3. Image directive (NgOptmized image)  stable
 4. extended esbuild support
 
+```
+---
 
+```js
 Angular 16
 
 1. Angular signals
@@ -105,6 +150,10 @@ Angular 16
 6. Router inputs
 7. standalone project support
 
+```
+---
+
+```js
 
 Angular 17 
 
@@ -113,7 +162,10 @@ Angular 17
 3. enhanced deferred loading
 4. improved ssr
 
+```
+---
 
+```js
 Angular 18
 
 1. Enhanced ssr
@@ -121,6 +173,23 @@ Angular 18
 3. Ivy rendering engine enhacement
 4. streamlined forms module
 5. improved CLI and Tooling
+```
+---
+
+```js
+Angular 19
+
+1. Incremental Hydration in developer preview
+2. Stable Event replay 
+3. Standalone by default
+4. Strict standalone enforcement
+5. Experimental reactive primitive: linkedSignal
+6. Experimental streamlining data retrieval: resource and rxResource APIs
+7. Hybrid rendering (server route configuration) in developer preview
+8. Warnings for unused standalone imports 
+
+```
+
 
 
 
