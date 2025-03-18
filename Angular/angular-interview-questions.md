@@ -1,182 +1,20 @@
 #  Most Important & Latest Angular Questions
 
-##### What directives and pipes ?
 
-##### how to create dynamic component
-
-##### Which form you use template driven or reactive forms
-
-##### In case of multi-step forms, how will you use reactive form in it?
-
-##### How to use shareable component
-
-##### What is @INPUT & @OUTPUT decorators?
-
-##### What is pipe? How to implement it?
-
-##### What are validators in Angular? How to implement it?
-
-##### How would you validate a form in angular?
-
-##### How would you display the data in the frontend in angular?
-
-##### What is directive? Types and syntax for ngif and ngfor
-
-##### Had you created a custom directive? had you created a directive in the project that you had done before?
-
-##### How to share the data between two component? or How we can communicate across(pass data from one component to another) the components? 
-
-##### What is routing?
-
-##### wild card route
-
-##### What is router-outlet
-
-##### What is lazy Loading ? how to implement?, advantages and disadvantage?
-
-##### How to stop initial navigation until some condition is satisfied?
-
-##### what are services? why it had introduced in angular?
-
-##### how to create a service ?
-
-
-##### As we can also import the services in the components directly by creating the object of that services. So why we are using the dependency injection?
-
-##### communication between modules?
-
-##### how to share data between two modules in angular ? 
-
-##### How to show grid in angular? And how to show data in grid?
-
-##### How to use validation in search bar?
-
-##### Types of event handler
-
-##### How to handle error in angular? Syntax
-
-##### If we want to search any data after entering 3 character How to implement that? 
-
-##### How would you get the data from the api in angular?
-
-##### Explain different types of event in angular?
-
-##### If you have a huge data then how would you show in the frontend in angular?
-
-##### How would you implement sorting and filtering if you have got a huge amount of data in your table or grid.
-
-##### what is main.js polyfill.js vendor.js
-
-##### what is -o in command ng s -o?
-
-##### session storage VS local Storage?
-
-##### I have one lack recode in our application, how to show in web page ?
-
-##### Difference between JIT & AOT
-
-##### Benefits of trackBy
-
-##### What is a Change Detection Strategy? (https://www.xenonstack.com/blog/performance-optimization-in-angular)
-
-##### How to manage state in Angular => ngrx
-
-##### How to make http calls
-
-##### Explain build process of angular application
-
-##### Difference between Subject & Behavior subject & ReplaySubject & AsyncSubject (https://medium.com/@jaydeepvpatil225/observables-and-subjects-in-angular-a4d73dfa5bb)
-
-##### What is View encapsulation in Angular
-
-##### How to manage/handle session in ng
-
-##### What is package.json & its need?
-
-##### what are shared modules
-
-##### callback promises observable
-
-##### subject vs behaviouralSubject
-
-##### app module - how to get other than app component as a home component
-
-##### dependency and dev dependency - diff
-
-##### infinite scrolling npm pacakage
-
-
-##### Standalone Component
-
-
-##### Optimizing angular app
-
-##### Angular universal - SSR
-
-##### Angular animation
-
-##### Offline capabilities using service worker
-
-##### Angular Schematics
-
-##### ng Deploy
-
-##### Managing Multiple Projects in One Folder
-
-##### ActivatedRouteSnapshot, RouterStateSnapshot ActivatedRoute NavigationEnd NavigationStart ActivatedRoute, Data, Event, NavigationEnd, Router
-
-
-##### angular logging and monitoring
-
-
-##### cross component communication
-
-##### Inter component communication?
-
-##### How to easily make all properties of an interface optional?
-
-##### is it possible to initialize variables in a constructor
-
-##### typescript vs javascript? advantages of typescript?
-
-##### app module - how to get other than app component as a home component
-
-
-##### what are html selectors
-
-##### what are css selectors
-
-##### what is singleton class
-
-##### explain two way binding
-
-##### what is providers in angular ?
-
-##### what is whitespaing ?
- 
-##### Transpiling?
-
-##### web-socket?
-
-##### web accessibility
-
-##### Angular upgrade
-
-##### Unit testing? describe different test cases for a 
-
-##### Explain angular deployment, how is it done?
-
-##### ngrx, flow: how state, actions, selectors, etc work
-
-##### What is responsive design? what is mobile-first approach?
-
-##### Multilanguage support?
-
-##### How to select multiple data from drop-down
+#### typescript vs javascript? advantages of typescript?
+
+|Sr.no| Typescript | Javascript |
+|----------- | ----------- | ----------- |
+| 1 | Statically Typed (Optional) | Dynamically Typed  |
+| 2 | Requires transpiling to JavaScript | No compilation needed |
+| 3 | Full OOP features (classes, interfaces) | Basic OOP (ES6 classes)|
+| 4 | Compile-time error checking | Runtime error detection|
+| 5 | Limited validation and refactoring capabilities | Extensive validation and refactoring capabilities|
+| 6 | Large code bases are harder to read | Type system and object-oriented approach improve readability|
 
 ---
 
-##### what is dependency injection and why we used?
+#### what is dependency injection and why we used?
 
 Dependency Injection is an application design pattern which is used to achieve efficiency and modularity by
 creating objects which depend on another different object.
@@ -547,9 +385,22 @@ Hello
    HTTP, DI, Input output because of which you do not need other frameworks
 
 ```
- 
+
 ---
- 
+
+##### Difference between JIT & AOT
+
+| Sr.no | JIT | AOT |
+| ----------- | ----------- | ----------- |
+| 1 | Compiles the Angular application in the browser at runtime. | Compiles the Angular application during the build process. |
+| 2 | Slower startup because the app is compiled at runtime. | Faster application startup since the code is already compiled. |
+| 3 | Larger bundle size due to extra code required for compilation because needs to include the Angular compiler in the bundle | Produces smaller bundle sizes by removing unused code. |
+| 4 | Errors are caught only during runtime, potentially causing issues in production. | Catches errors during build time, reducing runtime errors. | 
+| 5 |  Better tree shaking | tree shaking less effective |
+
+
+---
+
 ##### Difference between angularjs vs angular
    
 | Sr.no | angular ts | angular js |
@@ -564,19 +415,10 @@ Hello
 
 
 ---
- 
-##### what are directives in Angular ?
- 
-```
-   Directives changes the behavior of HTML DOM.
-   
-   e.g. ngModel, [hidden], {{anything}} 
-```
-
----
- 
- 
+  
 ##### Explain the different types of Angular Directives ?
+
+Directives are a powerful feature used to manipulate the DOM (Document Object Model) by changing the appearance, behavior, or structure of an element
 
 ```
    3 types SAC (S: Structural, A: Attribute, C: component)
@@ -591,8 +433,72 @@ Hello
 
 
 ```
+
+* Creating a Custom Directive: 
+
+- @HostListener allows you to listen to events on the host element (the element the directive is applied to) and react to them.
+
+- @HostBinding allows you to bind properties of the host element to directive properties.
+
+Use Angular CLI to generate a new directive:
+
+```js
+ng generate directive highlight
+```
+
+```js
+import { Directive, HostListener, HostBinding } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'  // Directive is used as an attribute
+})
+export class HighlightDirective {
+
+  // HostBinding binds the background color property to the host element's style
+  @HostBinding('style.backgroundColor') backgroundColor: string;
+
+  // HostBinding binds the border property to the host element's style
+  @HostBinding('style.border') border: string;
+
+  constructor() {
+    this.backgroundColor = 'transparent'; // Default background color
+    this.border = 'none'; // Default border
+  }
+
+  // HostListener listens to mouseover events and changes background color
+  @HostListener('mouseover') onMouseOver() {
+    this.backgroundColor = 'yellow'; // Change background color on hover
+  }
+
+  // HostListener listens to mouseout events and resets background color
+  @HostListener('mouseout') onMouseOut() {
+    this.backgroundColor = 'transparent'; // Reset background color on mouse out
+  }
+
+  // HostListener listens to click events and adds a border
+  @HostListener('click') onClick() {
+    this.border = '2px solid black'; // Add border on click
+  }
+
+  // HostListener listens to mouseup events and resets the border
+  @HostListener('mouseup') onMouseUp() {
+    this.border = 'none'; // Reset border when mouseup occurs
+  }
+}
+
+```
+
+in app.module.ts file add directive in ==> declarations: [ HighlightDirective ]
+
+```html
+<div appHighlight>
+  Hover over me to change background color, and click to add a border!
+</div>
+
+```
+
  
- ---
+---
  	
  
 ##### Explain the importance of NPM and node_modules folder?
@@ -1006,7 +912,7 @@ Hello
 ---
 
 
-##### What is the difference bektween the Component and a directive?
+##### What is the difference between the Component and a directive?
 
 
 |Sr.no| Directive | Component |
@@ -1338,13 +1244,23 @@ Hello
 ```
 
 
-##### custom pipe
+##### Pipes and custom pipe
+
+* Pipes: Pipes are a special operator in Angular that allows you to transform data. Pipes are powerful tools for formatting data, performing calculations.
+
+1. DatePipe
+2. UpperCasePipe
+3. LowerCasePipe
+4. CurrencyPipe
+5. PercentPipe
+6. JsonPipe
+7. AsyncPipe
+
+* Custom Pipe: It is imple function designed to accept an input value, process, and return a transformed value as the output.
+   
+Angular Pipes are TypeScript classes with the @Pipe decorator. 
 
 ```js
-
-   pipes are simple functions designed to accept an input value, process, and return a transformed value as the output
-
-   Angular Pipes are TypeScript classes with the @Pipe decorator. 
 
    CLI Command: ng g p pipe-name
 
@@ -1363,8 +1279,6 @@ Hello
    here PipeTransform is interface which provide transform method.
 
    in module or components we can use as==> declarations: [DemopipePipe]
-
-
    and in html we can use as ==>  <p>Super power boost: {{2 | demopipe: 10}}</p>
 
 ```
@@ -1961,3 +1875,173 @@ Integration with third-party libraries: Integrating Angular with third-party lib
 
 
 ---
+
+
+
+
+
+##### how to create dynamic component
+
+##### Which form you use template driven or reactive forms
+
+##### In case of multi-step forms, how will you use reactive form in it?
+
+##### How to use shareable component
+
+##### What is @INPUT & @OUTPUT decorators?
+
+
+##### What are validators in Angular? How to implement it?
+
+##### How would you validate a form in angular?
+
+##### How would you display the data in the frontend in angular?
+
+##### How to share the data between two component? or How we can communicate across(pass data from one component to another) the components? 
+
+##### What is routing?
+
+##### wild card route
+
+##### What is router-outlet
+
+##### What is lazy Loading ? how to implement?, advantages and disadvantage?
+
+##### How to stop initial navigation until some condition is satisfied?
+
+##### communication between modules?
+
+##### how to share data between two modules in angular ? 
+
+##### How to show grid in angular? And how to show data in grid?
+
+##### How to use validation in search bar?
+
+##### Types of event handler
+
+##### How to handle error in angular? Syntax
+
+##### If we want to search any data after entering 3 character How to implement that? 
+
+##### How would you get the data from the api in angular?
+
+##### Explain different types of event in angular?
+
+##### If you have a huge data then how would you show in the frontend in angular?
+
+##### How would you implement sorting and filtering if you have got a huge amount of data in your table or grid.
+
+##### what is main.js polyfill.js vendor.js
+
+##### what is -o in command ng s -o?
+
+##### Benefits of trackBy
+
+##### What is a Change Detection Strategy? (https://www.xenonstack.com/blog/performance-optimization-in-angular)
+
+##### Difference between Subject & Behavior subject & ReplaySubject & AsyncSubject (https://medium.com/@jaydeepvpatil225/observables-and-subjects-in-angular-a4d73dfa5bb)
+
+##### What is View encapsulation in Angular
+
+##### How to manage/handle session in ng
+
+##### What is package.json & its need?
+
+##### what are shared modules
+
+##### callback promises observable
+
+##### subject vs behaviouralSubject
+
+##### app module - how to get other than app component as a home component
+
+##### dependency and dev dependency - diff
+
+##### infinite scrolling npm pacakage
+
+
+##### Standalone Component
+
+
+##### Optimizing angular app
+
+##### Angular universal - SSR
+
+##### Angular animation
+
+##### Offline capabilities using service worker
+
+##### Angular Schematics
+
+##### ng Deploy
+
+##### Managing Multiple Projects in One Folder
+
+##### ActivatedRouteSnapshot, RouterStateSnapshot ActivatedRoute NavigationEnd NavigationStart ActivatedRoute, Data, Event, NavigationEnd, Router
+
+
+##### angular logging and monitoring
+
+##### cross component communication
+
+##### Inter component communication?
+
+##### How to easily make all properties of an interface optional?
+
+##### is it possible to initialize variables in a constructor
+
+##### app module - how to get other than app component as a home component
+
+##### what is singleton class
+
+##### explain two way binding
+
+##### what is providers in angular ?
+
+##### what is whitespaing ?
+ 
+##### Transpiling?
+
+##### web-socket?
+
+##### web accessibility
+
+##### Angular upgrade
+
+##### Unit testing? describe different test cases for a 
+
+##### Explain angular deployment, how is it done?
+
+##### ngrx, flow: how state, actions, selectors, etc work
+
+##### What is responsive design? what is mobile-first approach?
+
+##### Multilanguage support?
+
+##### How to select multiple data from drop-down
+
+
+<!-- 
+
+Learn this and make notes
+
+localeCompare
+toLocaleString
+enum use
+number conversion
+interface use
+type in ts
+parseFloat
+parseInt()
+window.location.href
+import jwtDecode from 'jwt-decode'; in angular
+toISOString()
+tofixed()
+
+constructor(@Inject(Injector) private readonly injector: Injector, private readonly zone: NgZone) {
+    // no code required here
+  }
+Inject, Injectable, Injector, NgZone
+ng build --configuration=production --output-hashing=all
+
+ -->

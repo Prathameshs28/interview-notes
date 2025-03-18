@@ -26,7 +26,7 @@ NgRx is a reactive state management library for Angular applications that levera
 
 ---
 
-Why Use NgRx?
+<b>Why Use NgRx?</b>
 
 ```js
 1. Predictable State Management: NgRx enforces a unidirectional data flow, 
