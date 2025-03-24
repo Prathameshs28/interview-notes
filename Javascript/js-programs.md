@@ -2,28 +2,289 @@
 # JS coding questions Questions
 
 
+##### Anagram Program: 
 
-1. Given an integer array nums of unique elements, return all possible subsets. The solution set must not contain duplicate subsets. Return the solution in any order.
+ - Input: s1 = “geeks”  s2 = “kseeg”
+ - Input: s1 = “allergy”  s2 = “allergic”
+
+- Algorithm: 
+
+1. check the length of two strings if it is not same return false
+2. sort both strings
+3. compare both strings 
+4. if comparison correct then return true otherwise send false
+
+
+```js
+// using in-built methods
+
+function checkAnagram(str1,str2){
+  
+  if(str1.length !== str2.length) return false;
+  
+  let s1 = str1.toLowerCase().split('').sort().join('');
+  let s2= str2.toLowerCase().split('').sort().join('');
+  
+  console.log('s1: ',s1, 's2: ',s2)
+  if(s1 === s2) return true;
+  
+  return false;
+}
+
+let result = checkAnagram("allergy","allergic");
+console.log(result)
+
+```
+
+```js
+// without using in-built methods
+
+function checkAnagram(str1,str2){
+  if(str1.length !== str1.length) return false;
+  
+  let s1 = {};
+  let s2 = {};
+  
+  for(let char of str1){
+  s1[char] = s1[char] ? ++s1[char] : 1;
+  }
+  
+  for(let char of str2){
+    s2[char] = s2[char] ? ++s2[char] : 1;
+  }
+  
+  
+  
+  for(let char in s1){
+    if(s1[char] !== s2[char]){
+      return false;
+    }
+  }
+
+return true;
+}
+
+
+```
+
+---
+
+##### Palindrome code
+
+- Inputs: “madam”, “racecar”, “12321”
+
+- 1st Algorithm: 
+
+1. create variable and store reversed value in it.
+2. compare input string with new one.
+3. if both are same then return true otherwise return false.
+
+
+- 2nd Algorithm:
+
+1. loop over to string with start index to mid.
+2. take end and check with start and end till mid
+3. in every iteration if both are same then return true otherwise return false.
+
+```js
+
+// 1st algorithm code
+
+
+function checkPalindrome(str){
+  let revStr = str.split('').reverse().join('');
+  
+  if(str === revStr) return true;
+  
+  return false;
+}
+
+let result = checkPalindrome('12321');
+
+console.log(result)
+
+```
+
+```js
+// 2st algorithm code
+
+function checkPalindrome(str){
+  let end = str.length - 1;
+  let mid = Math.floor(str.length/2);
+  flag = false;
+  for(let i=0;i<=mid;i++){
+    if(str[i] === str[end]){
+      flag = true;
+      end--;
+    }else{
+      flag = false;
+      break;
+    }
+  }
+  
+  return flag; 
+}
+
+```
+
+##### Flatten array
+
+```js
+// in built method in js:
+
+const myArr = [1, 2, [3, [4,[3,5,[12,11,[97,44,23,[33,55,[99,77]]]]], 5, 6], 7], 8];
+console.log(myArr.flat(Infinity))
+
+```
+
+- Algorithm:
+
+1. loop over array and check element is array or number.
+2. if element is number push to result array
+3. if element is array call function again with step 1 and 2
+
+Don't use return when re calling function (at recursive call)
+
+```js
+
+// without using in built method
+
+function flatternArray(arr,result){
+  for(let i=0;i<arr.length;i++){
+    if(Array.isArray(arr[i])){
+       flatternArray(arr[i],result);
+    }else{
+      result.push(arr[i]);
+    }
+  }
+  
+  return result;
+}
+
+let res = flatternArray(myArr,[]);
+console.log(res)
+
+```
+
+- flatten array - level wise 
+
+- Algorithm: 
+
+ 1. loop over Array
+ 2. if ele is number then push to result
+ 3.   if ele is array then 
+   - flag++ 
+   - check level >= flag always 
+   - if true then recursive call
+   - if false push entire array
+
+```js
+let QueArray = [1, [2, [3, 4,[7,8,[9,10]]], 5], 6];
+
+// level 1 - [1,2,[3, 4,[7,8,[9,10]]],5,6];
+// level 2 - [1,2,3,4,[7,8,[9,10]],5,6]
+// level 3 - [1,2,3,4,7,8,[9,10],5,6]
+// level 4 - [1,2,3,4,7,8,9,10,5,6]
+
+
+function flattenArray(arr,resultArray,level,flag=0){
+  for(let i=0;i<arr.length;i++){
+    if(Array.isArray(arr[i])){
+        flag++;
+        if(level >= flag){
+          flattenArray(arr[i],resultArray,level,flag);
+        }else{
+          resultArray.push(arr[i]);
+        }
+    }else{
+      resultArray.push(arr[i]);
+    }
+  }
+  
+  return resultArray;
+}
+
+const level = 4;
+const result = flattenArray(QueArray,[],level);
+console.log(result)
+
+```
+
+```js
+// using concat method: 
+
+function flatArray(arr){
+  return arr.reduce((result,next)=> Array.isArray(next) ? result.concat(flatArray(next)) : result.concat(next) , []);
+}
+
+console.log(flatArray(QueArray))
+
+```
+---
+
+##### Duplicate numbers in array:
+
+```js
+let arr = [2,1,4,6,3,1,7,8,3,2,1,4,2,1,3,7,8,8,8,8,8,8];
+
+
+function repeatNumbers(arr){
+  let obj = {};
+  let counter = 0;
+  let max = {};
+  for(let i=0;i<arr.length;i++){
+    obj[arr[i]] = obj[arr[i]] ? ++obj[arr[i]] : 1;
+    if(obj[arr[i]] > counter){
+      counter++;
+      max = {[arr[i]]:obj[arr[i]]}
+    }
+  }
+  
+  console.log(obj,max, );
+}
+
+repeatNumbers(arr);
+```
+---
+
+##### Reverse string:
+
+```js
+let str = "Reverse a String";
+
+function revString(str){
+
+  if(str.length <= 1) return str;
+  console.log(str.slice(1))
+  return revString(str.slice(1)) + str[0];
+}
+
+console.log(revString(str))
+```
+
+---
+
+##### Given an integer array nums of unique elements, return all possible subsets. The solution set must not contain duplicate subsets. Return the solution in any order.
 Input: nums = [1,2,3]
 Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
 
 ---
 
-2. You are given a string s. You can convert s to a palindrome by adding characters in front of it.
+##### You are given a string s. You can convert s to a palindrome by adding characters in front of it.
 Return the shortest palindrome you can find by performing this transformation.
 Input: s = "aacecaaa"
 Output: "aaacecaaa"
 
 ---
 
-3. Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
+##### Given a string s that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
 Return a list of unique strings that are valid with the minimum number of removals. You may return the answer in any order.
 Input: s = "()())()"
 Output: ["(())()","()()()"]
 
 ---
 
-4. Given an integer n, return the least number of perfect square numbers that sum to n.
+##### Given an integer n, return the least number of perfect square numbers that sum to n.
 Input: n = 13
 Output: 2
 Explanation: 13 = 4 + 9.
@@ -32,7 +293,7 @@ SECTION 2 (Solve any 2)
 ---
 
 
-5. Given an array of objects as following:
+##### Given an array of objects as following:
    const arr = [{id: 'AB',sum: 100,},
   {id: 'BC',sum: 200,},
   {id: 'CA',sum: 200,},
@@ -46,7 +307,7 @@ Convert this array such that objects with same ids have one object and sum shoul
 
 ---
 
-  3. how to find duplicate elements in given array ?
+  ##### how to find duplicate elements in given array ?
   
 ```js
     const arr = [10,20,30,40,20,60,70,10];
@@ -75,7 +336,7 @@ Unique: [10, 30, 40, 20]
 
 ---
 
-   4. How to find the count of duplicates in an array?
+   ##### How to find the count of duplicates in an array?
   
 ```js
 
@@ -104,7 +365,7 @@ console.log(count);
 ---
 
 
-  5. how to check if a given number is an integer ?
+  ##### how to check if a given number is an integer ?
   
   ```js
   const no = 1;
@@ -124,7 +385,7 @@ true
 ---
 
 
-  7. how to sort a number array?
+  ##### how to sort a number array?
 
   ```js
   const arr = [40,20,80,20,10,80,100];
@@ -145,7 +406,7 @@ true
 
 ---
   
-  8. how to sort given string array ?
+  ##### how to sort given string array ?
 
 ```js
     const arr = ['jan','feb','march','aug','may'];   
@@ -163,7 +424,7 @@ true
 ---
   
  
-  9. How to find maximum value in a numbered array ?
+  ##### How to find maximum value in a numbered array ?
 
 
   ```js
@@ -184,7 +445,7 @@ true
 
 ---
   
-  10. How to find minimum value in a numbered array ?
+  ##### How to find minimum value in a numbered array ?
 
 ```js
   let arr = [20,40,20,50,60,70,10,50];
@@ -204,7 +465,7 @@ true
 
 ---
 
-  11. How to find the average of the numbers in the numbered array ?
+  ##### How to find the average of the numbers in the numbered array ?
 
 ```js
     let arr = [10,20,40,0,80,30,40];
@@ -224,7 +485,7 @@ true
 ---
 
   
-  12. how can you uppercase the first character in string array ?
+  ##### how can you uppercase the first character in string array ?
 
  ```js
    const days = ['sun','mon','tue','wed','thu','fri','sat'];
@@ -247,7 +508,7 @@ true
 ---
 
 
-  13. How to make sentence out of a given array?
+  1##### How to make sentence out of a given array?
 
   ```js
 
@@ -271,7 +532,7 @@ Welcome to Computer World !!!
 
 ---
 
-  14. How to check if an array contains any element of another array?
+  1##### How to check if an array contains any element of another array?
 
 ```js
   let arr1 = [1,2,3,4,5,6,7,8,9,10];
@@ -290,39 +551,10 @@ Welcome to Computer World !!!
 false
 ```
 
---- 
-  
-  15. Given two strings how can you check if the strings are anagram 
-  for each other ?
-
-  ```js
-    let str1 = 'abc';
-    let str2 = 'cbd';
-    
-    //let str2 = 'cba';  // true
-    
-    function checkAnagram(s1,s2){
-    let a = str1.toLowerCase();
-    let b=str2.toLowerCase();
-    
-    a=a.split("").sort().join("");
-    b=b.split("").sort().join("");
-    
-    return a===b;
-    }
-    
-    console.log(checkAnagram(str1,str2));  
-  ```
-
-**#Output:**
-
-```
-false
-```
 
 ---
   
-  16. How can you extract a few fields from the given JSON object
+##### How can you extract a few fields from the given JSON object
   and form a new array ?
 
 ```js
@@ -384,7 +616,7 @@ console.log(result);
   **String Questions:** 
 
 
-  1. How do you check whether a string contains a substring?
+  ##### How do you check whether a string contains a substring?
 
 ```js
 
@@ -477,7 +709,6 @@ and determine if they are equal
 
 4. implement a function to filter an object based on a given condition
 
-5. write a function to flatten a nested object into single-level object
 
 6. Implement a funciton to merge two objects, with second 
 object's values precendence in case of key conflicts
